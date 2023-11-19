@@ -1,0 +1,710 @@
+PYTHON NOTES
+CLI : comand line interface
+.py extension for python files
+
+
+functions :  
+print
+input
+
+variable contain some value
+
+comments just there for note in code to 
+help understand the code # || """ sdfhahoh """ => multiline
+
+pseudocode strukturing return values
+
+space after for aeshthetic, wth comma(,) better for aesthetic, dari pada +
++++ , 
+
+parameters : pass opsional atribut dalam function 
+
+backslash \
+
+f"{x}" curly brace dalam str , pass variable ke dalam string quote
+
+cleaning input 
+remove whiespace from str
+name = name.strip() 
+capitalize name first capitalize
+name = name.capitalize() 
+capitalize user title
+name = name.title() 
+
+multiple value adding, 
+name = name.title().strip()
+
+split frst name and last name
+first, last = name.split(" ")
+
+
+read always in documentation
+
+
+INT (INTEGER)
++,-,*,/,%(mmodular)
+
+interactive mode
+reading python code interactively
+python
+
+execut immediately
+
+back to int
+calculator sample
+
+x = int(input("whats x? "))
+y = int(input("Wjats u? "))
+
+print(x+y)
+
+end youtube (1:17:04)
+
+prioritizing readlibty, simplicity
+
+nested to many things make think too much, ake lot mistake
+
+== float or decimal value ==
+* code
+
+x = float(input("what's x? "))
+y = float(input("what's y? "))
+
+round function tak 1 number, 
+[ ] = something opsional
+
+breaking out the code make readly
+
+round( number [, ndigit]))
+print(f"{z:,}")
+
+pinrt (f"{z:.2f}")
+
+=== def ----
+own function , 
+
+ def hello(to):
+	print("hello",to)
+name = input("whats your name? ")
+hello(name)
+
+ def hello(to="world"):
+	print("hello",to)
+name = input("whats your name? ")
+hello(name)
+
+def main():
+	name=input("whats your name? ")
+	hello()
+def hello(to):
+	print("hello,",to)
+	
+main()
+error
+
+======= scope
+======= return
+** square
+pow(n,2)
+
+===== conditional state
+> >= < <= == != 
+if
+
+(2:29:09) course conditional
+bool
+
+instead if else
+return True if n % 2 = 0 else False 
+
+even further
+def is_even(n):
+	return (n%2==0)
+
+**match
+
+match name:
+	case "Harry":
+		print("Gryfindor")
+	casae dst gryfindor
+	case "Draco":
+		print("Slytherin")
+	case _:
+		print("Who?")
+
+furthur
+	 case "Harry" | "Hermione" |
+
+==Loops++
+
+again n again cycle process
+
+
+(4:07:11) end of print square
+
+
+import random
+
+random.randint(x,y)
+x= nomer yang au diambil
+y = probabilitas 1-10
+
+random.shuffle(x)
+	list 
+	shuffle the ilst
+
+import statistics
+	mean, median, modus
+
+command-line arguments
+	sys
+		sys.argv =>argument vector
+
+import sys
+	sys.argv[1]
+python name.py David
+
+sys.argv[0]?? adlah the name of program lke in C
+
+put an exception, if we handle indexError, 
+
+try : 
+catch :
+
+sys.exit
+
+slices
+for arg in sys.argv[1:]
+	print("asfsdf",arg)
+## bisa belakang diminuskan jadi yang blakang sendri bisa tidak tertampil 
+
+packages
+PyPI = python apckage indexes
+
+cowsay = 
+
+pip = allow to install packages
+
+pip install cowsay
+
+APIs = alication program interfaces
+
+requests allow to make web requests
+
+JSON(javacript )
+
+
+Libraries
+
+
+__name__ automaticly 
+
+(06:09:19)
+
+assert
+
+AssertionError
+
+pytest
+
+(06:49:00)
+ 
+append(name)
+
+file = open(the name file loc, "w"), write just rewrite the old
+file = open(the name file loc, "a"), appending
+
+file.write(name)
+file.close()
+
+
+with oen ("names.txt","a") as file:
+	file.write(f"{name}\n")
+
+with open("names.txt","r") as file:
+	lines = file.readlines()
+for line in lines:
+	print("hello, ", line.rstrip())
+	
+(7.27.21)
+
+names =[]
+with open("names.txt") as file:
+	for line in file:
+		name.append(line.rstrip())
+		
+for name in sorted(names, reverse=True)
+	print(f"hello, {name}")
+
+
+==
+file in csv very simple type of file that can make lot of iniformation separate with commas
+==
+
+code student.csv
+code students.py == {
+
+with open(students.csv") as file:
+	for line in file:
+		row = line.rstrip().split(",")
+		print(f"{row[0]} is in {row[1]}")
+	
+====	
+code easy to read :
+
+with open(students.csv") as file:
+	for line in file:
+		name,house = line.rstrip().split(",")
+		print(f"{name} is in {house}")
+
+====
+
+students=[]
+
+with open("students.csv") as file:
+	for line in file:
+		name, house = line.rstrp().split(",")
+		students.append(f"{name} is in {house}")
+		
+for student n sorted(students):
+	print(student)
+	
+=====
+code easy to read :
+students = []
+with open("students.csv") as file:
+	for line in file:
+		name, house = line.rstrp().split(",")
+		student = {}
+		student["name"] = name
+		student["house"] = house
+		students.append(student)
+		
+for student in students:
+	print(f{student['name']} is in {student['house']}")
+	
+code easy to read :
+students = []
+with open("students.csv") as file:
+	for line in file:
+		name, house = line.rstrp().split(",")
+		student = {}
+		student = {"name" : name, "house":house}
+		students.append(student)
+		
+def get_name(student):
+	return student["name]
+	
+for student in sorted(students, key=get_name, revers=True):
+	print(f{student['name']} is in {student['house']}")
+
+code easy to read : 
+
+students = []
+with open("students.csv") as file:
+	for line in file:
+		name, house = line.rstrp().split(",")
+		student = {}
+		student = {"name" : name, "house":house}
+		students.append(student)
+	
+for student in sorted(students, key=lambda student:student["name"]):
+	print(f{student['name']} is in {student['house']}")
+
+## if student house replace to home
+import csv
+
+students = []
+
+with open("students.csv") as file:
+		reader = csv.reader(file)
+		for row in reader:
+			students.append({"name":name,"home":home})
+			
+for student in sorted(students, key=lambda student:student["name"]):
+	print(f"{student['name']} is from {student['home']}")
+    
+ ## if in the top line of csv ada title kolom name, dan home
+
+import csv
+
+students = []
+
+with open("students.csv") as file:
+		reader = csv.DictReader(file)
+		for row in reader:
+			students.append({"name":row["name"],"home": row["home"]})
+			
+for student in sorted(students, key=lambda student:student["name"]):
+	print(f"{student['name']} is from {student['home']}")
+
+(8:11.35)
+
+write code 
+
+import csv
+
+name = input(""The name? ")
+home = input("the home? ")
+
+with open("students.csv",a) as file:
+    writer = csv.writer(file)
+    writer.writerow([name,home])
+    
+II
+
+import csv
+
+name = input(""The name? ")
+home = input("the home? ")
+
+with open("students.csv",a) as file:
+    writer = csv.DictWriter(file, fieldnames=["name","home"])
+    writer.writerow(["name": name,"home":home])
+    
+contain name and home spesifically jadi ga bisa terubah2 seseuai row 1 or 2 jadi sesuai nama name and home
+
+##binary file, PIL
+pillow.readthedocs.io
+
+import sys
+from PIL import Image
+
+image = []
+
+for arg in sys.argv[1:]:
+    image = Image.open(arg)
+    images.append(image)
+ 
+ images[0].save(
+    "costumes.gif", save_all= True, append_images=[images[1], duration=200, loop=0, 
+    )
+ 
+ 
+ ## regexes reguler expression to cleanup data
+ validate.py
+ 
+ email = input("Email? ").strip()
+ 
+ if "@" in email:
+    print("valid")
+ else:
+    print("invalid")
+
+broken :::
+improve :
+
+ 
+ email = input("Email? ").strip()
+ 
+ if "@" in email and "." in email:
+    print("valid")
+ else:
+    print("invalid")
+
+brokern :::
+improve
+
+email = input("Email? ").strip()
+ 
+username,domain = email.split("@")
+
+if username and "." in domain:
+    print("valid")
+else:
+    print("invalid")
+    
+    
+ improve
+
+email = input("Email? ").strip()
+ 
+username,domain = email.split("@")
+
+if username and domain.endwith(".edu"):
+    print("valid")
+else:
+    print("invalid")
+
+## re define pattern, 
+re.search(pattern, string, flags=0)
+
+ improve
+import re
+
+email = input("Email? ").strip()
+
+if re.search("@",email):
+    print("valid")
+ else:
+    print("invalid")
+    
+
+ improve
+import re
+
+email = input("Email? ").strip()
+
+if re.search("..*@..*",email):
+    print("valid")
+ else:
+    print("invalid")
+    
+(8:55:17)   
+ 
+ improve
+import re
+
+email = input("Email? ").strip()
+
+if re.search(r".+*@.+\.edu*",email):
+    print("valid")
+ else:
+    print("invalid")
+ 
+ 
+ improve
+import re
+
+email = input("Email? ").strip()
+
+if re.search(r"^.+@.+\.edu$*",email):
+    print("valid")
+ else:
+    print("invalid")
+
+ improve
+import re
+
+email = input("Email? ").strip()
+
+if re.search(r"^[^@]+@[^@]+\.edu$*",email):
+    print("valid")
+ else:
+    print("invalid")
+
+ improve
+import re
+
+email = input("Email? ").strip()
+
+if re.search(r"^\w+@\w+\.(edu|com|id|gov)$*",email):
+    print("valid")
+ else:
+    print("invalid")
+
+ re.IGNORECASE
+ re.MULTILINE
+ re.DOTALL
+ 
+ 
+ ;))
+ ;))))))))))))
+ 
+ using library to ake email verification
+ ==================================================================
+ format.py
+ 
+ format canonically
+ 
+ name = input("whats you name? ").strip()
+ print(f"hello, {name}")
+ 
+ improve : 
+ name = input("whats you name? ").strip()
+ if "," in name :
+    last, first  name.split(",")
+    name = f"{first} {last}"
+ print(f"hello, {name}")
+ 
+ 
+ impove
+ import re
+ 
+ name = input("whats you name? ").strip()
+ matches = re.search(r"(.+), (.+)$", name)
+ if matches:
+    last, first = matches.groups()
+    name = f"{first} {last}"
+ print(f"hello, {name})
+
+
+ print(f"hello, {name}")
+ 
+ impove
+ import re
+ 
+ name = input("whats you name? ").strip()
+ matches = re.search(r"(.+), *(.+)$", name)
+ if matches:
+   name = matches.group(2) + " " + matches.group(1)
+ print(f"hello, {name})
+
+
+ impove
+ import re
+ 
+ name = input("whats you name? ").strip()
+ if matches := re.search(r"(.+), *(.+)$", name):
+   name = matches.group(2) + " " + matches.group(1)
+ print(f"hello, {name})
+ 
+==================================
+twitter.py
+
+url = input("URL: ").strip()
+username = url.replace("https://twitter.com/", "")
+print(f("Username:{username}")
+
+improve : 
+url = input("URL: ").strip()
+username = url.removeprefix("https://twitter.com/")
+print(f("Username:{username}")
+
+
+improve : 
+import re
+
+url = input("URL: ").strip()
+username = re.sub(r"^(https?://)?(www\.)?twitter\.com/", "", url)
+print(f"username : {username}")
+
+
+improve : 
+import re
+
+url = input("URL: ").strip()
+matches = re.search(r"^https?://(?:www\.)?twitter\.com/(.+)$", url, re.IGNORECASE)
+if matches:
+    print(f"username: ", matches.group(1))
+
+
+end of regular expressions
+=============================================================
+def main():
+    name, house = get_student()
+    print(f"{name} from {house}")
+
+def get_student()"
+    name = nput("Name : ")
+    house = input("House : ")
+    return name, house
+    
+if __name__ = "__main__":
+    main()
+    
+tuple = imutabel
+
+def main():
+    student = get_student()
+
+    print(f"{student[0]} from {student[1]}")
+
+def get_student()"
+    name = nput("Name : ")
+    house = input("House : ")
+    return (name, house)
+    
+if __name__ = "__main__":
+    main()
+
+improve :: list 
+def main():
+    student = get_student()
+    if student[0] == "Padma":
+        student[1] = "Ravenclaw"
+    print(f"{student[0]} from {student[1]}")
+
+def get_student()"
+    name = input("Name : ")
+    house = input("House : ")
+    return [name, house]
+    
+if __name__ = "__main__":
+    main()
+    
+improve :
+def main():
+    student = get_student()
+    if student[0] == "Padma":
+        student[1] = "Ravenclaw"
+    print(f"{student['name']} fro {student['house']}")
+
+def get_student()"
+        student = {}
+        student["name"] = input("Name: ")
+        student["house"] = input("House: ")
+        return student
+if __name__ = "__main__":
+    main()
+improve ::
+def main():
+    student = get_student()
+    if student["name"] == "Padma":
+        student["house"] = "Ravenclaw"
+    print(f"{student['name']} fro {student['house']}")
+
+def get_student()"
+        student = {}
+        student["name"] = input("Name: ")
+        student["house"] = input("House: ")
+        return student
+if __name__ = "__main__":
+    main()
+
+improve ::
+def main():
+    student = get_student()
+    if student["name"] == "Padma":
+        student["house"] = "Ravenclaw"
+    print(f"{student['name']} fro {student['house']}")
+
+def get_student()"
+        student = {}
+        student["name"] = input("Name: ")
+        student["house"] = input("House: ")
+        return student
+if __name__ = "__main__":
+    main()
+
+classes ::::: oop
+class Student:
+    ...
+
+def main():
+    student = get_student()
+    print(f"{student.name} from {student.house}")
+
+def get_student()"
+       student = Student()
+       student.name = input("Name: ")
+       student.house = input("House: ")
+       return student
+       
+if __name__ = "__main__":
+    main()
+
+improve ::
+
+class Student:
+    def __init__(self, name, house):
+        self.name = name
+        self.house = house 
+        
+def main():
+    student = get_student()
+    print(f"{student.name} from {student.house}")
+
+def get_student():
+       name = input("Name: ")
+       house = input("House: ")
+       return Student(name,house)
+       
+       
+best (11:29:36)
+       
+if __name__ = "__main__":
+    main()
+
+
+continue(12:29:19)
