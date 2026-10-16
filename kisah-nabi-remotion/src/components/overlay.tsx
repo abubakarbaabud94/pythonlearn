@@ -1,6 +1,7 @@
 import React from 'react';
 import { AbsoluteFill, interpolate, spring, useCurrentFrame, useVideoConfig } from 'remotion';
 import ayatData from '../data/ayat.json';
+import { useCueWords, useCues } from '../lib/cues';
 import { COLORS, FONTS, SAFE } from '../theme';
 import type { Episode, Sumber } from '../types';
 
@@ -131,17 +132,45 @@ export const HookTitle: React.FC<{ episode: Episode }> = ({ episode }) => {
   );
 };
 
-/** Kartu ayat: teks Arab muncul kata demi kata, bagian doa disorot emas, lalu terjemahan Kemenag. */
+/**
+ * Kartu ayat: teks Arab muncul kata demi kata, bagian yang disorot (doa) berwarna emas, lalu terjemahan Kemenag.
+ * Dengan voiceover (scene.cue = '.'), bagian sorot muncul saat diucapkan dan kutipan terjemahan menyala
+ * kata demi kata mengikuti narasi.
+ */
 export const AyatCard: React.FC<{ kunci: string; sorotKataTerakhir?: number }> = ({ kunci, sorotKataTerakhir = 0 }) => {
   const frame = useCurrentFrame();
   const { durationInFrames } = useVideoConfig();
   const a = getAyat(kunci);
   const kata = a.arab.split(' ');
-  const akhirArab = durationInFrames * 0.42;
-  const per = (akhirArab - 10) / kata.length;
-  const terjemahanOp = interpolate(frame, [akhirArab, akhirArab + 18], [0, 1], clamp);
-  const kartuOp = interpolate(frame, [0, 10], [0, 1], clamp);
+  const nPembuka = kata.length - sorotKataTerakhir;
   const bagian = a.terjemahan.split(/(".*?")/);
+  const kutipan = bagian.find((b) => b.startsWith('"'));
+  const kataKutipan = kutipan ? kutipan.slice(1, -1).split(' ') : [];
+
+  // Titik sinkron dari voiceover: kata pertama kutipan yang diucapkan.
+  const ucapan = useCueWords();
+  const pertama = kataKutipan.length
+    ? ucapan.findIndex((c) => c.text.toLowerCase().startsWith(kataKutipan[0].toLowerCase()))
+    : -1;
+  const sinkron = pertama >= 0;
+  const cueKutipan = sinkron ? ucapan.slice(pertama, pertama + kataKutipan.length).map((c) => c.frame) : [];
+
+  // Jadwal kemunculan tiap kata Arab.
+  const akhirArab = sinkron ? cueKutipan[0] - 6 : durationInFrames * 0.42;
+  const mulaiKata = (i: number) => {
+    if (!sinkron || i < nPembuka) {
+      const n = sinkron ? nPembuka : kata.length;
+      return 10 + i * ((akhirArab - 10) / n);
+    }
+    const j = i - nPembuka;
+    const t0 = cueKutipan[0];
+    const t1 = cueKutipan.at(-1)! + 10;
+    return t0 + (j * (t1 - t0)) / sorotKataTerakhir;
+  };
+  const munculTerjemahan = sinkron ? 24 : akhirArab;
+  const terjemahanOp = interpolate(frame, [munculTerjemahan, munculTerjemahan + 18], [0, 1], clamp);
+  const kartuOp = interpolate(frame, [0, 10], [0, 1], clamp);
+
   return (
     <AbsoluteFill style={{ justifyContent: 'center', alignItems: 'center', padding: `0 ${SAFE.side}px`, opacity: kartuOp }}>
       <GarisOrnamen lebar={300} />
@@ -159,9 +188,9 @@ export const AyatCard: React.FC<{ kunci: string; sorotKataTerakhir?: number }> =
         }}
       >
         {kata.map((k, i) => {
-          const mulai = 10 + i * per;
+          const mulai = mulaiKata(i);
           const op = interpolate(frame, [mulai, mulai + 12], [0, 1], clamp);
-          const sorot = i >= kata.length - sorotKataTerakhir;
+          const sorot = i >= nPembuka;
           return (
             <span
               key={i}
@@ -190,15 +219,23 @@ export const AyatCard: React.FC<{ kunci: string; sorotKataTerakhir?: number }> =
           maxWidth: 900,
         }}
       >
-        {bagian.map((b, i) =>
-          b.startsWith('"') ? (
-            <span key={i} style={{ color: COLORS.gold, fontWeight: 800 }}>
-              {b}
+        {bagian.map((b, i) => {
+          if (!b.startsWith('"')) return <span key={i}>{b}</span>;
+          return (
+            <span key={i} style={{ fontWeight: 800 }}>
+              {'"'}
+              {kataKutipan.map((w, j) => {
+                const nyala = !sinkron || frame >= cueKutipan[j];
+                return (
+                  <span key={j} style={{ color: nyala ? COLORS.gold : 'rgba(246,238,221,0.45)' }}>
+                    {(j ? ' ' : '') + w}
+                  </span>
+                );
+              })}
+              {'"'}
             </span>
-          ) : (
-            <span key={i}>{b}</span>
-          ),
-        )}
+          );
+        })}
       </div>
       <div
         style={{
@@ -250,12 +287,12 @@ export const TigaKegelapan: React.FC = () => {
   const frame = useCurrentFrame();
   const { durationInFrames, fps } = useVideoConfig();
   const baris = ['Gelap malam', 'Gelap lautan', 'Gelap perut ikan'];
+  const cues = useCues(3, [0.08, 0.38, 0.68], durationInFrames);
   return (
     <AbsoluteFill style={{ justifyContent: 'center', alignItems: 'center', gap: 34, paddingBottom: 260 }}>
       {baris.map((b, i) => {
-        const mulai = durationInFrames * (0.08 + i * 0.3);
-        const s = spring({ frame: frame - mulai, fps, config: { damping: 200 } });
-        const aktif = frame < durationInFrames * (0.38 + i * 0.3) || i === 2;
+        const s = spring({ frame: frame - (cues[i] - 4), fps, config: { damping: 200 } });
+        const aktif = i === 2 || frame < cues[i + 1];
         return (
           <div
             key={b}

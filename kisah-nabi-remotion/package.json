@@ -8,7 +8,8 @@
     "studio": "remotion studio",
     "render": "remotion render Yunus out/yunus.mp4",
     "still": "remotion still Yunus out/still.png",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "sinkron-vo": "node scripts/sinkron-vo.mjs --id yunus --audio voiceover/yunus-raw.mp3 --kata voiceover/yunus-words.json --tempo 1.08 --lambat 5"
   },
   "dependencies": {
     "@fontsource/amiri-quran": "5.3.0",

@@ -1,10 +1,20 @@
 import type { Caption } from '@remotion/captions';
-import type { Scene } from '../types';
+import type { Scene, VoData } from '../types';
+
+/** Subtitle dari voiceover tersinkron: timing per kata hasil transkripsi. */
+export const captionsDariVo = (vo: VoData): Caption[] =>
+  vo.kata.map((k, i) => ({
+    text: (i === 0 ? '' : ' ') + k.text,
+    startMs: Math.round(k.start * 1000),
+    endMs: Math.round(k.end * 1000),
+    timestampMs: null,
+    confidence: null,
+    pageBreakAfter: vo.kata[i + 1]?.adegan !== k.adegan || /[.?!:…]$/.test(k.text),
+  }));
 
 /**
- * Timing subtitle SEMENTARA: kata dibagi rata sepanjang scene (bobot = panjang kata).
- * Setelah voiceover direkam, ganti dengan hasil Whisper
- * (@remotion/install-whisper-cpp -> toCaptions) supaya kata menyala tepat saat diucapkan.
+ * Timing subtitle SEMENTARA (jika belum ada voiceover): kata dibagi rata sepanjang scene (bobot = panjang kata).
+ * Setelah ada voiceover, jalankan scripts/sinkron-vo.mjs dan isi `vo` di file episode.
  */
 export const perkiraanCaptions = (scenes: Scene[]): Caption[] => {
   const hasil: Caption[] = [];

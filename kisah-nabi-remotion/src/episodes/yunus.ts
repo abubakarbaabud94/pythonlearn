@@ -1,4 +1,5 @@
 import type { Episode } from '../types';
+import vo from '../data/vo-yunus.json';
 
 // Setiap klaim di narasi harus punya `sumber`. Ayat Al-Qur'an -> tipe 'quran'.
 // Penjelasan ulama -> tipe 'tafsir' (tampil dengan label & warna berbeda).
@@ -14,6 +15,9 @@ export const yunus: Episode = {
     rujukan: 'QS. YUNUS : 98',
   },
   audio: { ambience: 'audio/ambience-laut.mp3' },
+  // Voiceover ElevenLabs (suara "Arthur – Wise Indonesian Narrator", eleven_v4),
+  // disinkronkan dengan: npm run sinkron-vo. Hapus baris ini untuk kembali ke timing `detik`.
+  vo,
   scenes: [
     {
       id: 'hook',
@@ -28,7 +32,7 @@ export const yunus: Episode = {
       detik: 8,
       latar: 'kota-senja',
       kamera: { dari: { x: -60, y: 40, zoom: 1.14 }, ke: { x: 70, y: 0, zoom: 1.0 } },
-      narasi: 'Yunus termasuk salah seorang rasul. Namun suatu hari, ia pergi meninggalkan kaumnya dalam keadaan marah.',
+      narasi: 'Yunus termasuk salah seorang rasul. Namun suatu hari, ia pergi meninggalkan kaumnya, dalam keadaan marah.',
       sumber: { tipe: 'quran', label: "Aṣ-Ṣaffat: 139 · Al-Anbiya': 87" },
     },
     {
@@ -45,7 +49,7 @@ export const yunus: Episode = {
       latar: 'bawah-laut',
       kaligrafi: '37:142',
       kamera: { dari: { x: 0, y: 0, zoom: 1.0 }, ke: { x: 0, y: 0, zoom: 1.06 } },
-      narasi: 'Maka ia ditelan oleh ikan besar, dalam keadaan tercela.',
+      narasi: 'Maka ia ditelan oleh ikan besar… dalam keadaan tercela.',
       sumber: { tipe: 'quran', label: 'Aṣ-Ṣaffat: 142' },
     },
     {
@@ -53,6 +57,7 @@ export const yunus: Episode = {
       detik: 9,
       latar: 'kegelapan',
       overlay: 'tiga-kegelapan',
+      cue: '^gelapnya',
       kamera: { dari: { x: 0, y: 0, zoom: 1.0 }, ke: { x: 0, y: 0, zoom: 1.1 } },
       narasi:
         'Para mufassir menjelaskan, ia berada dalam tiga kegelapan sekaligus: gelapnya malam, gelapnya lautan, dan gelapnya perut ikan.',
@@ -65,6 +70,7 @@ export const yunus: Episode = {
       overlay: 'ayat',
       ayat: '21:87',
       sorotKataTerakhir: 9,
+      cue: '.', // semua kata: kutipan terjemahan menyala mengikuti narasi
       kamera: { dari: { x: 0, y: 0, zoom: 1.0 }, ke: { x: 0, y: 0, zoom: 1.06 } },
       narasi:
         'Di dalam kegelapan itu, ia berseru: Tidak ada tuhan selain Engkau. Mahasuci Engkau. Sungguh, aku termasuk orang-orang yang zalim.',
@@ -75,7 +81,7 @@ export const yunus: Episode = {
       latar: 'cahaya',
       kamera: { dari: { x: 0, y: 120, zoom: 1.1 }, ke: { x: 0, y: -80, zoom: 1.0 } },
       narasi:
-        'Seandainya ia bukan orang yang banyak bertasbih, ia akan tetap di perut ikan sampai Hari Berbangkit. Namun Allah mengabulkan doanya dan menyelamatkannya.',
+        'Seandainya ia bukan orang yang banyak bertasbih, ia akan tetap di perut ikan sampai Hari Berbangkit. Namun Allah mengabulkan doanya, dan menyelamatkannya.',
       sumber: { tipe: 'quran', label: "Aṣ-Ṣaffat: 143–144 · Al-Anbiya': 88" },
     },
     {
@@ -84,7 +90,7 @@ export const yunus: Episode = {
       latar: 'pantai-fajar',
       kamera: { dari: { x: -60, y: 20, zoom: 1.12 }, ke: { x: 40, y: 0, zoom: 1.0 } },
       narasi:
-        'Ia dilemparkan ke daratan yang tandus dalam keadaan sakit. Lalu ditumbuhkan untuknya sebatang pohon labu.',
+        'Ia dilemparkan ke daratan yang tandus, dalam keadaan sakit. Lalu ditumbuhkan untuknya sebatang pohon labu.',
       sumber: { tipe: 'quran', label: 'Aṣ-Ṣaffat: 145–146' },
     },
     {
@@ -93,7 +99,7 @@ export const yunus: Episode = {
       latar: 'penutup',
       overlay: 'penutup',
       kamera: { dari: { x: 0, y: 0, zoom: 1.0 }, ke: { x: 0, y: -20, zoom: 1.12 } },
-      narasi: 'Lalu bagaimana nasib kaumnya? Satu-satunya kaum yang imannya menolak azab.',
+      narasi: 'Lalu, bagaimana nasib kaumnya? Satu-satunya kaum… yang imannya menolak azab.',
     },
   ],
 };

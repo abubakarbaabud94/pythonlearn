@@ -30,6 +30,16 @@ export type Scene = {
   sorotKataTerakhir?: number;
   /** Kaligrafi samar raksasa di latar belakang. */
   kaligrafi?: string;
+  /** Regex kata di voiceover yang menjadi titik sinkron animasi (mis. "^gelapnya"). */
+  cue?: string;
+};
+
+/** Hasil scripts/sinkron-vo.mjs (waktu dalam detik). */
+export type VoData = {
+  audio: string;
+  durasi: number;
+  adegan: { mulai: number; selesai: number }[];
+  kata: { text: string; start: number; end: number; adegan: number }[];
 };
 
 export type Episode = {
@@ -41,5 +51,7 @@ export type Episode = {
   penutup: { part: string; teaser: string; rujukan: string };
   scenes: Scene[];
   /** File di public/ (opsional). */
-  audio?: { voiceover?: string; ambience?: string };
+  audio?: { ambience?: string };
+  /** Voiceover tersinkron. Jika ada, durasi scene & subtitle mengikuti voiceover, bukan `detik`. */
+  vo?: VoData;
 };

@@ -2,6 +2,7 @@ import React from 'react';
 import { AbsoluteFill, Easing, interpolate, useCurrentFrame, useVideoConfig } from 'remotion';
 import { noise2D } from '@remotion/noise';
 import { Layer } from '../lib/camera';
+import { useCues } from '../lib/cues';
 import {
   Awan,
   BerkasCahaya,
@@ -152,10 +153,12 @@ const BawahLaut: React.FC = () => {
 
 /** Tiga kegelapan (menurut tafsir): malam, laut, perut ikan, muncul berlapis. */
 const Kegelapan: React.FC = () => {
-  const { p } = useProgres();
-  const malam = interpolate(p, [0.05, 0.25], [0, 1], clamp);
-  const laut = interpolate(p, [0.35, 0.55], [0, 1], clamp);
-  const perut = interpolate(p, [0.65, 0.85], [0, 1], clamp);
+  const { frame, durasi } = useProgres();
+  // Tiap lapisan muncul tepat saat kata "gelapnya ..." diucapkan (lihat `cue` di file episode).
+  const [c1, c2, c3] = useCues(3, [0.08, 0.38, 0.68], durasi);
+  const malam = interpolate(frame, [c1 - 8, c1 + 18], [0, 1], clamp);
+  const laut = interpolate(frame, [c2 - 8, c2 + 18], [0, 1], clamp);
+  const perut = interpolate(frame, [c3 - 8, c3 + 18], [0, 1], clamp);
   return (
     <>
       <Langit warna={['#000', '#020307']} />

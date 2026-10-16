@@ -46,11 +46,31 @@ scripts/
 3. Kalau perlu latar baru, tambahkan di `src/scenes/Latar.tsx` dan tipe `Latar` di `src/types.ts`.
 4. Daftarkan di `EPISODES` pada `src/Root.tsx`.
 
-## Mengganti placeholder sebelum upload
+## Voiceover
+
+Episode Yunus memakai voiceover ElevenLabs (suara **Arthur – Wise Indonesian Narrator**, model `eleven_v4`).
+Naskah ditulis dengan penanda `[long pause]` di antara scene; penanda itu dipakai untuk memecah kata per scene.
+
+```bash
+npm run sinkron-vo   # voiceover/yunus-raw.mp3 + yunus-words.json -> public/audio/vo-yunus.mp3 + src/data/vo-yunus.json
+```
+
+Skrip `scripts/sinkron-vo.mjs`:
+1. memecah timestamp per kata (ElevenLabs Scribe) menjadi scene di setiap `[long pause]`,
+2. memadatkan jeda: maks 0,5 dtk di dalam scene, 0,8 dtk di scene doa (`--lambat 5`), 0,9 dtk antar-scene,
+3. mempercepat tempo 1,08x tanpa mengubah nada, normalisasi loudness,
+4. menulis durasi scene + timing kata. Durasi scene di video otomatis mengikuti file ini.
+
+Field `cue` pada scene menyinkronkan animasi dengan kata yang diucapkan
+(mis. `'^gelapnya'` untuk tiga kegelapan, `'.'` untuk kartu ayat yang terjemahannya menyala per kata).
+
+Rekaman sendiri juga bisa: transkripsi dengan Whisper/Scribe, ubah ke format `{ words: [{ text, type: 'word', start, end }] }`,
+dan sisipkan token `[long pause]` di batas scene.
+
+## Placeholder yang masih perlu diganti sebelum upload
 
 | Placeholder | Ganti dengan |
 |---|---|
-| Tanpa voiceover | Rekam narasi → `public/audio/vo-yunus.mp3`, isi `audio.voiceover` di file episode |
-| Timing subtitle diperkirakan rata | Transkripsi voiceover dengan Whisper (`@remotion/install-whisper-cpp`) dan pakai hasilnya sebagai `captions` |
 | Ilustrasi prosedural (SVG) | Ilustrasi berlapis PNG (langit / tengah / depan) di `public/`, tetap dibungkus `<Layer depth>` agar parallax bekerja |
 | Ambience sintetis | Sound design asli (ombak, angin, gemuruh) berlisensi jelas |
+| — | Naskah ditinjau ustadz sebelum publikasi |

@@ -1,0 +1,861 @@
+{
+ "audio": "audio/vo-yunus.mp3",
+ "tempo": 1.08,
+ "durasi": 80.431,
+ "adegan": [
+  {
+   "mulai": 0,
+   "selesai": 9.769
+  },
+  {
+   "mulai": 9.769,
+   "selesai": 18.771
+  },
+  {
+   "mulai": 18.771,
+   "selesai": 26.821
+  },
+  {
+   "mulai": 26.821,
+   "selesai": 32.136
+  },
+  {
+   "mulai": 32.136,
+   "selesai": 42.36
+  },
+  {
+   "mulai": 42.36,
+   "selesai": 54.888
+  },
+  {
+   "mulai": 54.888,
+   "selesai": 65.879
+  },
+  {
+   "mulai": 65.879,
+   "selesai": 73.65
+  },
+  {
+   "mulai": 73.65,
+   "selesai": 82.231
+  }
+ ],
+ "kata": [
+  {
+   "text": "Ditelan",
+   "start": 0.148,
+   "end": 0.889,
+   "adegan": 0
+  },
+  {
+   "text": "ikan",
+   "start": 1.037,
+   "end": 1.481,
+   "adegan": 0
+  },
+  {
+   "text": "besar.",
+   "start": 1.556,
+   "end": 2.204,
+   "adegan": 0
+  },
+  {
+   "text": "Di",
+   "start": 2.606,
+   "end": 2.754,
+   "adegan": 0
+  },
+  {
+   "text": "tengah",
+   "start": 2.828,
+   "end": 3.125,
+   "adegan": 0
+  },
+  {
+   "text": "lautan.",
+   "start": 3.273,
+   "end": 3.913,
+   "adegan": 0
+  },
+  {
+   "text": "Dalam",
+   "start": 4.311,
+   "end": 4.903,
+   "adegan": 0
+  },
+  {
+   "text": "gelap",
+   "start": 5.051,
+   "end": 5.496,
+   "adegan": 0
+  },
+  {
+   "text": "gulita.",
+   "start": 5.644,
+   "end": 6.295,
+   "adegan": 0
+  },
+  {
+   "text": "Dan",
+   "start": 6.713,
+   "end": 6.861,
+   "adegan": 0
+  },
+  {
+   "text": "doanya…",
+   "start": 6.935,
+   "end": 7.737,
+   "adegan": 0
+  },
+  {
+   "text": "hanya",
+   "start": 8.116,
+   "end": 8.412,
+   "adegan": 0
+  },
+  {
+   "text": "satu",
+   "start": 8.56,
+   "end": 8.708,
+   "adegan": 0
+  },
+  {
+   "text": "kalimat.",
+   "start": 8.857,
+   "end": 9.374,
+   "adegan": 0
+  },
+  {
+   "text": "Yunus",
+   "start": 10.165,
+   "end": 10.758,
+   "adegan": 1
+  },
+  {
+   "text": "termasuk",
+   "start": 10.832,
+   "end": 11.35,
+   "adegan": 1
+  },
+  {
+   "text": "salah",
+   "start": 11.425,
+   "end": 11.647,
+   "adegan": 1
+  },
+  {
+   "text": "seorang",
+   "start": 11.721,
+   "end": 12.017,
+   "adegan": 1
+  },
+  {
+   "text": "rasul.",
+   "start": 12.091,
+   "end": 12.648,
+   "adegan": 1
+  },
+  {
+   "text": "Namun",
+   "start": 13.048,
+   "end": 13.418,
+   "adegan": 1
+  },
+  {
+   "text": "suatu",
+   "start": 13.493,
+   "end": 13.789,
+   "adegan": 1
+  },
+  {
+   "text": "hari,",
+   "start": 14.011,
+   "end": 14.264,
+   "adegan": 1
+  },
+  {
+   "text": "ia",
+   "start": 14.683,
+   "end": 14.831,
+   "adegan": 1
+  },
+  {
+   "text": "pergi",
+   "start": 14.979,
+   "end": 15.349,
+   "adegan": 1
+  },
+  {
+   "text": "meninggalkan",
+   "start": 15.424,
+   "end": 16.016,
+   "adegan": 1
+  },
+  {
+   "text": "kaumnya,",
+   "start": 16.09,
+   "end": 16.672,
+   "adegan": 1
+  },
+  {
+   "text": "dalam",
+   "start": 17.07,
+   "end": 17.441,
+   "adegan": 1
+  },
+  {
+   "text": "keadaan",
+   "start": 17.515,
+   "end": 17.959,
+   "adegan": 1
+  },
+  {
+   "text": "marah.",
+   "start": 18.033,
+   "end": 18.356,
+   "adegan": 1
+  },
+  {
+   "text": "Ia",
+   "start": 19.185,
+   "end": 19.407,
+   "adegan": 2
+  },
+  {
+   "text": "lari",
+   "start": 19.555,
+   "end": 19.926,
+   "adegan": 2
+  },
+  {
+   "text": "menuju",
+   "start": 20,
+   "end": 20.37,
+   "adegan": 2
+  },
+  {
+   "text": "kapal",
+   "start": 20.444,
+   "end": 20.889,
+   "adegan": 2
+  },
+  {
+   "text": "yang",
+   "start": 20.963,
+   "end": 21.037,
+   "adegan": 2
+  },
+  {
+   "text": "penuh",
+   "start": 21.185,
+   "end": 21.481,
+   "adegan": 2
+  },
+  {
+   "text": "muatan.",
+   "start": 21.555,
+   "end": 22.107,
+   "adegan": 2
+  },
+  {
+   "text": "Lalu",
+   "start": 22.56,
+   "end": 22.856,
+   "adegan": 2
+  },
+  {
+   "text": "diadakan",
+   "start": 22.93,
+   "end": 23.449,
+   "adegan": 2
+  },
+  {
+   "text": "undian…",
+   "start": 23.523,
+   "end": 24.107,
+   "adegan": 2
+  },
+  {
+   "text": "dan",
+   "start": 24.535,
+   "end": 24.684,
+   "adegan": 2
+  },
+  {
+   "text": "Yunus",
+   "start": 24.758,
+   "end": 25.128,
+   "adegan": 2
+  },
+  {
+   "text": "termasuk",
+   "start": 25.202,
+   "end": 25.795,
+   "adegan": 2
+  },
+  {
+   "text": "yang",
+   "start": 25.869,
+   "end": 26.017,
+   "adegan": 2
+  },
+  {
+   "text": "kalah.",
+   "start": 26.091,
+   "end": 26.419,
+   "adegan": 2
+  },
+  {
+   "text": "Maka",
+   "start": 27.224,
+   "end": 27.594,
+   "adegan": 3
+  },
+  {
+   "text": "ia",
+   "start": 27.668,
+   "end": 27.89,
+   "adegan": 3
+  },
+  {
+   "text": "ditelan",
+   "start": 28.002,
+   "end": 28.409,
+   "adegan": 3
+  },
+  {
+   "text": "oleh",
+   "start": 28.483,
+   "end": 28.668,
+   "adegan": 3
+  },
+  {
+   "text": "ikan",
+   "start": 28.705,
+   "end": 29.002,
+   "adegan": 3
+  },
+  {
+   "text": "besar…",
+   "start": 29.113,
+   "end": 29.51,
+   "adegan": 3
+  },
+  {
+   "text": "dalam",
+   "start": 29.905,
+   "end": 30.35,
+   "adegan": 3
+  },
+  {
+   "text": "keadaan",
+   "start": 30.424,
+   "end": 31.016,
+   "adegan": 3
+  },
+  {
+   "text": "tercela.",
+   "start": 31.09,
+   "end": 31.674,
+   "adegan": 3
+  },
+  {
+   "text": "Para",
+   "start": 32.599,
+   "end": 32.636,
+   "adegan": 4
+  },
+  {
+   "text": "mufassir",
+   "start": 32.71,
+   "end": 33.155,
+   "adegan": 4
+  },
+  {
+   "text": "menjelaskan,",
+   "start": 33.229,
+   "end": 33.992,
+   "adegan": 4
+  },
+  {
+   "text": "ia",
+   "start": 34.403,
+   "end": 34.625,
+   "adegan": 4
+  },
+  {
+   "text": "berada",
+   "start": 34.699,
+   "end": 35.069,
+   "adegan": 4
+  },
+  {
+   "text": "dalam",
+   "start": 35.144,
+   "end": 35.44,
+   "adegan": 4
+  },
+  {
+   "text": "tiga",
+   "start": 35.514,
+   "end": 35.736,
+   "adegan": 4
+  },
+  {
+   "text": "kegelapan",
+   "start": 35.884,
+   "end": 36.477,
+   "adegan": 4
+  },
+  {
+   "text": "sekaligus:",
+   "start": 36.551,
+   "end": 37.16,
+   "adegan": 4
+  },
+  {
+   "text": "gelapnya",
+   "start": 37.547,
+   "end": 37.992,
+   "adegan": 4
+  },
+  {
+   "text": "malam,",
+   "start": 38.066,
+   "end": 38.528,
+   "adegan": 4
+  },
+  {
+   "text": "gelapnya",
+   "start": 38.902,
+   "end": 39.346,
+   "adegan": 4
+  },
+  {
+   "text": "lautan,",
+   "start": 39.383,
+   "end": 39.844,
+   "adegan": 4
+  },
+  {
+   "text": "dan",
+   "start": 40.24,
+   "end": 40.462,
+   "adegan": 4
+  },
+  {
+   "text": "gelapnya",
+   "start": 40.611,
+   "end": 41.129,
+   "adegan": 4
+  },
+  {
+   "text": "perut",
+   "start": 41.277,
+   "end": 41.499,
+   "adegan": 4
+  },
+  {
+   "text": "ikan.",
+   "start": 41.574,
+   "end": 41.924,
+   "adegan": 4
+  },
+  {
+   "text": "Di",
+   "start": 42.796,
+   "end": 42.821,
+   "adegan": 5
+  },
+  {
+   "text": "dalam",
+   "start": 42.895,
+   "end": 43.266,
+   "adegan": 5
+  },
+  {
+   "text": "kegelapan",
+   "start": 43.34,
+   "end": 43.932,
+   "adegan": 5
+  },
+  {
+   "text": "itu,",
+   "start": 44.155,
+   "end": 44.299,
+   "adegan": 5
+  },
+  {
+   "text": "ia",
+   "start": 45.002,
+   "end": 45.224,
+   "adegan": 5
+  },
+  {
+   "text": "berseru:",
+   "start": 45.298,
+   "end": 45.753,
+   "adegan": 5
+  },
+  {
+   "text": "Tidak",
+   "start": 46.436,
+   "end": 46.733,
+   "adegan": 5
+  },
+  {
+   "text": "ada",
+   "start": 46.844,
+   "end": 46.955,
+   "adegan": 5
+  },
+  {
+   "text": "tuhan",
+   "start": 47.029,
+   "end": 47.399,
+   "adegan": 5
+  },
+  {
+   "text": "selain",
+   "start": 47.548,
+   "end": 47.844,
+   "adegan": 5
+  },
+  {
+   "text": "Engkau.",
+   "start": 47.918,
+   "end": 48.424,
+   "adegan": 5
+  },
+  {
+   "text": "Mahasuci",
+   "start": 49.121,
+   "end": 49.861,
+   "adegan": 5
+  },
+  {
+   "text": "Engkau.",
+   "start": 49.972,
+   "end": 50.379,
+   "adegan": 5
+  },
+  {
+   "text": "Sungguh,",
+   "start": 51.092,
+   "end": 51.592,
+   "adegan": 5
+  },
+  {
+   "text": "aku",
+   "start": 52.271,
+   "end": 52.567,
+   "adegan": 5
+  },
+  {
+   "text": "termasuk",
+   "start": 52.641,
+   "end": 53.159,
+   "adegan": 5
+  },
+  {
+   "text": "orang-orang",
+   "start": 53.308,
+   "end": 53.826,
+   "adegan": 5
+  },
+  {
+   "text": "yang",
+   "start": 53.9,
+   "end": 54.048,
+   "adegan": 5
+  },
+  {
+   "text": "zalim.",
+   "start": 54.122,
+   "end": 54.438,
+   "adegan": 5
+  },
+  {
+   "text": "Seandainya",
+   "start": 55.338,
+   "end": 55.881,
+   "adegan": 6
+  },
+  {
+   "text": "ia",
+   "start": 56.029,
+   "end": 56.252,
+   "adegan": 6
+  },
+  {
+   "text": "bukan",
+   "start": 56.326,
+   "end": 56.622,
+   "adegan": 6
+  },
+  {
+   "text": "orang",
+   "start": 56.696,
+   "end": 56.992,
+   "adegan": 6
+  },
+  {
+   "text": "yang",
+   "start": 57.066,
+   "end": 57.14,
+   "adegan": 6
+  },
+  {
+   "text": "banyak",
+   "start": 57.214,
+   "end": 57.511,
+   "adegan": 6
+  },
+  {
+   "text": "bertasbih,",
+   "start": 57.622,
+   "end": 58.193,
+   "adegan": 6
+  },
+  {
+   "text": "ia",
+   "start": 58.608,
+   "end": 58.756,
+   "adegan": 6
+  },
+  {
+   "text": "akan",
+   "start": 58.868,
+   "end": 58.979,
+   "adegan": 6
+  },
+  {
+   "text": "tetap",
+   "start": 59.053,
+   "end": 59.423,
+   "adegan": 6
+  },
+  {
+   "text": "di",
+   "start": 59.497,
+   "end": 59.571,
+   "adegan": 6
+  },
+  {
+   "text": "perut",
+   "start": 59.645,
+   "end": 59.793,
+   "adegan": 6
+  },
+  {
+   "text": "ikan",
+   "start": 59.868,
+   "end": 60.238,
+   "adegan": 6
+  },
+  {
+   "text": "sampai",
+   "start": 60.386,
+   "end": 60.756,
+   "adegan": 6
+  },
+  {
+   "text": "Hari",
+   "start": 60.831,
+   "end": 61.053,
+   "adegan": 6
+  },
+  {
+   "text": "Berbangkit.",
+   "start": 61.127,
+   "end": 61.665,
+   "adegan": 6
+  },
+  {
+   "text": "Namun",
+   "start": 62.07,
+   "end": 62.44,
+   "adegan": 6
+  },
+  {
+   "text": "Allah",
+   "start": 62.588,
+   "end": 62.959,
+   "adegan": 6
+  },
+  {
+   "text": "mengabulkan",
+   "start": 62.996,
+   "end": 63.625,
+   "adegan": 6
+  },
+  {
+   "text": "doanya,",
+   "start": 63.699,
+   "end": 64.138,
+   "adegan": 6
+  },
+  {
+   "text": "dan",
+   "start": 64.515,
+   "end": 64.738,
+   "adegan": 6
+  },
+  {
+   "text": "menyelamatkannya.",
+   "start": 64.812,
+   "end": 65.469,
+   "adegan": 6
+  },
+  {
+   "text": "Ia",
+   "start": 66.289,
+   "end": 66.511,
+   "adegan": 7
+  },
+  {
+   "text": "dilemparkan",
+   "start": 66.585,
+   "end": 67.326,
+   "adegan": 7
+  },
+  {
+   "text": "ke",
+   "start": 67.363,
+   "end": 67.4,
+   "adegan": 7
+  },
+  {
+   "text": "daratan",
+   "start": 67.474,
+   "end": 67.844,
+   "adegan": 7
+  },
+  {
+   "text": "yang",
+   "start": 67.918,
+   "end": 67.992,
+   "adegan": 7
+  },
+  {
+   "text": "tandus,",
+   "start": 68.066,
+   "end": 68.628,
+   "adegan": 7
+  },
+  {
+   "text": "dalam",
+   "start": 69.029,
+   "end": 69.326,
+   "adegan": 7
+  },
+  {
+   "text": "keadaan",
+   "start": 69.4,
+   "end": 69.696,
+   "adegan": 7
+  },
+  {
+   "text": "sakit.",
+   "start": 69.77,
+   "end": 70.177,
+   "adegan": 7
+  },
+  {
+   "text": "Lalu",
+   "start": 70.586,
+   "end": 70.882,
+   "adegan": 7
+  },
+  {
+   "text": "ditumbuhkan",
+   "start": 70.956,
+   "end": 71.623,
+   "adegan": 7
+  },
+  {
+   "text": "untuknya",
+   "start": 71.697,
+   "end": 72.141,
+   "adegan": 7
+  },
+  {
+   "text": "sebatang",
+   "start": 72.216,
+   "end": 72.734,
+   "adegan": 7
+  },
+  {
+   "text": "pohon",
+   "start": 72.808,
+   "end": 73.03,
+   "adegan": 7
+  },
+  {
+   "text": "labu.",
+   "start": 73.104,
+   "end": 73.249,
+   "adegan": 7
+  },
+  {
+   "text": "Lalu,",
+   "start": 74.051,
+   "end": 74.465,
+   "adegan": 8
+  },
+  {
+   "text": "bagaimana",
+   "start": 74.88,
+   "end": 75.325,
+   "adegan": 8
+  },
+  {
+   "text": "nasib",
+   "start": 75.436,
+   "end": 75.621,
+   "adegan": 8
+  },
+  {
+   "text": "kaumnya?",
+   "start": 75.695,
+   "end": 76.089,
+   "adegan": 8
+  },
+  {
+   "text": "Satu-satunya",
+   "start": 76.736,
+   "end": 77.462,
+   "adegan": 8
+  },
+  {
+   "text": "kaum…",
+   "start": 77.536,
+   "end": 77.911,
+   "adegan": 8
+  },
+  {
+   "text": "yang",
+   "start": 78.316,
+   "end": 78.538,
+   "adegan": 8
+  },
+  {
+   "text": "imannya",
+   "start": 78.686,
+   "end": 79.278,
+   "adegan": 8
+  },
+  {
+   "text": "menolak",
+   "start": 79.353,
+   "end": 79.797,
+   "adegan": 8
+  },
+  {
+   "text": "azab.",
+   "start": 79.871,
+   "end": 80.464,
+   "adegan": 8
+  }
+ ]
+}
