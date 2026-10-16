@@ -5,6 +5,7 @@ import { Layer } from '../lib/camera';
 import { useCues } from '../lib/cues';
 import {
   ArakCahaya,
+  Glow,
   Awan,
   BerkasCahaya,
   Bintang,
@@ -24,6 +25,7 @@ import {
   Vignette,
   type ParamGelombang,
 } from '../components/alam';
+import { BuahBuahan, CerukMihrab, DindingBatu, Jendela, Pelita, Sajadah } from '../components/mihrab';
 import type { Latar as LatarType } from '../types';
 
 const clamp = { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' } as const;
@@ -392,6 +394,84 @@ const LangitMalam: React.FC = () => (
   </>
 );
 
+/** Zakariya · Interior mihrab: dinding batu, ceruk berbusur, pelita, jendela malam. */
+const MihrabDasar: React.FC<{ buah?: boolean; salju?: boolean; cahaya?: boolean }> = ({ buah, salju, cahaya }) => {
+  const { p } = useProgres();
+  const terang = cahaya ? interpolate(p, [0.05, 0.6], [0, 1], clamp) : 0;
+  return (
+    <>
+      <Layer depth={0.15}>
+        <DindingBatu />
+        <Jendela x={30} y={330} salju={salju} />
+        <Jendela x={820} y={330} salju={salju} />
+      </Layer>
+      <Layer depth={0.3}>
+        <CerukMihrab terang={terang} />
+      </Layer>
+      {cahaya && (
+        <Layer depth={0.2} style={{ opacity: terang }}>
+          <BerkasCahaya jumlah={9} warna="255,225,160" kekuatan={0.42} asalX={540} />
+        </Layer>
+      )}
+      <Layer depth={0.45}>
+        <Pelita x={540} y={560} kuat={cahaya ? 1 - terang * 0.4 : 1} />
+      </Layer>
+      {buah && (
+        <Layer depth={0.5}>
+          <BuahBuahan x={540} y={1490} muncul={interpolate(p, [0.05, 0.3], [0, 1], clamp)} />
+        </Layer>
+      )}
+      <Layer depth={0.8}>
+        <Sajadah />
+      </Layer>
+      <Layer depth={0.6}>
+        <Partikel
+          jumlah={cahaya ? 55 : 24}
+          warna={cahaya ? 'rgba(255,225,160,0.75)' : 'rgba(255,200,130,0.35)'}
+          ukuran={[1, cahaya ? 4 : 2.5]}
+          gelembung={false}
+          kecepatan={cahaya ? 1.6 : 0.4}
+          seed="debu-mihrab"
+        />
+      </Layer>
+      <Vignette kekuatan={0.8} />
+    </>
+  );
+};
+
+/** Ruang angkasa: penciptaan dari ketiadaan (QS. Maryam: 9). */
+const Kosmos: React.FC = () => {
+  const { frame, p } = useProgres();
+  const inti = interpolate(p, [0.45, 0.9], [0, 1], clamp);
+  return (
+    <>
+      <Langit warna={['#020108', '#06041a', '#0a0620']} />
+      <AbsoluteFill
+        style={{
+          background:
+            'radial-gradient(ellipse 60% 35% at 35% 40%, rgba(120,60,160,0.35), transparent 70%), radial-gradient(ellipse 50% 30% at 70% 62%, rgba(40,90,170,0.3), transparent 70%)',
+        }}
+      />
+      <Layer depth={0.1}>
+        <AbsoluteFill style={{ transform: `rotate(${frame * 0.04}deg) scale(1.4)` }}>
+          <Bintang jumlah={220} batasY={1900} seed="kosmos" />
+        </AbsoluteFill>
+      </Layer>
+      <Layer depth={0.4}>
+        <Partikel jumlah={30} warna="rgba(200,190,255,0.5)" ukuran={[1, 3]} gelembung={false} kecepatan={0.3} seed="kosmos-debu" />
+      </Layer>
+      <Glow x={540} y={810} r={120 + inti * 420} warna="255,230,180" kuat={inti} />
+      <Glow x={540} y={810} r={30 + inti * 50} warna="255,250,235" kuat={inti * 2} />
+      <Vignette kekuatan={0.6} />
+    </>
+  );
+};
+
+const MihrabMalam: React.FC = () => <MihrabDasar />;
+const MihrabBuah: React.FC = () => <MihrabDasar buah />;
+const MihrabMusim: React.FC = () => <MihrabDasar buah salju />;
+const MihrabCahaya: React.FC = () => <MihrabDasar cahaya />;
+
 const PETA: Record<LatarType, React.FC> = {
   'bawah-laut-gelap': BawahLautGelap,
   'kota-senja': KotaSenja,
@@ -406,6 +486,11 @@ const PETA: Record<LatarType, React.FC> = {
   'kota-taubat': KotaTaubat,
   'kota-fajar': KotaFajar,
   'langit-malam': LangitMalam,
+  'mihrab-malam': MihrabMalam,
+  'mihrab-buah': MihrabBuah,
+  'mihrab-musim': MihrabMusim,
+  'mihrab-cahaya': MihrabCahaya,
+  kosmos: Kosmos,
 };
 
 export const Latar: React.FC<{ jenis: LatarType }> = ({ jenis }) => {

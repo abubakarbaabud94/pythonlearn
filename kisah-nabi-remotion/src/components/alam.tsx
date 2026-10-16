@@ -60,7 +60,8 @@ export const Bintang: React.FC<{ jumlah?: number; seed?: string; batasY?: number
   );
 };
 
-export const Bulan: React.FC<{ x: number; y: number; r?: number }> = ({ x, y, r = 70 }) => (
+/** Glow lembut berbasis radial-gradient (box-shadow besar terpotong oleh renderer Chromium). */
+export const Glow: React.FC<{ x: number; y: number; r: number; warna: string; kuat?: number }> = ({ x, y, r, warna, kuat = 1 }) => (
   <div
     style={{
       position: 'absolute',
@@ -69,10 +70,27 @@ export const Bulan: React.FC<{ x: number; y: number; r?: number }> = ({ x, y, r 
       width: r * 2,
       height: r * 2,
       borderRadius: '50%',
-      background: 'radial-gradient(circle at 38% 35%, #FFFBEA, #E9DDB8 60%, #C9B98F)',
-      boxShadow: '0 0 80px 30px rgba(255,240,200,0.25), 0 0 220px 90px rgba(180,200,255,0.12)',
+      background: `radial-gradient(circle, rgba(${warna},${0.5 * kuat}) 0%, rgba(${warna},${0.18 * kuat}) 35%, rgba(${warna},0) 70%)`,
     }}
   />
+);
+
+export const Bulan: React.FC<{ x: number; y: number; r?: number }> = ({ x, y, r = 70 }) => (
+  <>
+    <Glow x={x} y={y} r={r * 5} warna="200,215,255" kuat={0.5} />
+    <div
+      style={{
+        position: 'absolute',
+        left: x - r,
+        top: y - r,
+        width: r * 2,
+        height: r * 2,
+        borderRadius: '50%',
+        background: 'radial-gradient(circle at 38% 35%, #FFFBEA, #E9DDB8 60%, #C9B98F)',
+        boxShadow: '0 0 40px 10px rgba(255,240,200,0.3)',
+      }}
+    />
+  </>
 );
 
 export const Matahari: React.FC<{ x: number; y: number; r?: number; warna?: string; glow?: string }> = ({
@@ -80,20 +98,22 @@ export const Matahari: React.FC<{ x: number; y: number; r?: number; warna?: stri
   y,
   r = 110,
   warna = '#FFD58A',
-  glow = 'rgba(255,170,80,0.45)',
+  glow = '255,170,80',
 }) => (
-  <div
-    style={{
-      position: 'absolute',
-      left: x - r,
-      top: y - r,
-      width: r * 2,
-      height: r * 2,
-      borderRadius: '50%',
-      background: `radial-gradient(circle, #FFF4D6 0%, ${warna} 55%, ${warna}00 72%)`,
-      boxShadow: `0 0 160px 80px ${glow}`,
-    }}
-  />
+  <>
+    <Glow x={x} y={y} r={r * 4.5} warna={glow} />
+    <div
+      style={{
+        position: 'absolute',
+        left: x - r,
+        top: y - r,
+        width: r * 2,
+        height: r * 2,
+        borderRadius: '50%',
+        background: `radial-gradient(circle, #FFF4D6 0%, ${warna} 55%, ${warna}00 72%)`,
+      }}
+    />
+  </>
 );
 
 export type ParamGelombang = { y: number; amp: number; panjang: number; kecepatan: number; fase?: number };

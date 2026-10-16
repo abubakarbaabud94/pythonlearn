@@ -11,7 +11,12 @@ export type Latar =
   | 'kota-azab'
   | 'kota-taubat'
   | 'kota-fajar'
-  | 'langit-malam';
+  | 'langit-malam'
+  | 'mihrab-malam'
+  | 'mihrab-buah'
+  | 'mihrab-musim'
+  | 'mihrab-cahaya'
+  | 'kosmos';
 
 export type Kamera = { x: number; y: number; zoom: number };
 

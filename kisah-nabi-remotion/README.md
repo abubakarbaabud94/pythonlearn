@@ -6,6 +6,7 @@ Template video 9:16 (1080×1920, 30 fps) untuk seri kisah nabi di TikTok/Reels.
 |---|---|---|---|
 | `Yunus` | Nabi Yunus · Part 1 — doa dari perut ikan | 82 dtk | `npm run render` |
 | `Yunus2` | Nabi Yunus · Part 2 — kaum yang azabnya diangkat | 91 dtk | `npm run render-2` |
+| `Zakariya` | #22 Nabi Zakariya — doa di usia senja | 110 dtk | `npm run render-zakariya` |
 
 ## Prinsip konten (tidak boleh dilanggar)
 
@@ -33,6 +34,7 @@ src/
   data/ayat.json        ← dihasilkan oleh `npm run ayat` (jangan edit manual)
   scenes/Latar.tsx      ← latar per scene (laut, badai, kota, pantai, ...)
   components/alam.tsx   ← elemen prosedural: gelombang, kapal, ikan, cahaya, partikel
+  components/mihrab.tsx ← interior mihrab: dinding batu, ceruk, pelita, jendela, buah, sajadah
   components/overlay.tsx← kartu ayat, label sumber, judul hook, penutup
   components/Subtitle.tsx ← subtitle gaya TikTok (kata aktif menyala emas)
   lib/camera.tsx        ← kamera & parallax 2.5D (Layer depth 0–1.3)
@@ -58,6 +60,7 @@ Naskah ditulis dengan penanda `[long pause]` di antara scene; penanda itu dipaka
 ```bash
 npm run sinkron-vo     # Part 1: voiceover/yunus-raw.mp3 -> public/audio/vo-yunus.mp3 + src/data/vo-yunus.json
 npm run sinkron-vo-2   # Part 2: voiceover/yunus-2-raw.mp3 -> public/audio/vo-yunus-2.mp3 + src/data/vo-yunus-2.json
+npm run sinkron-vo-zakariya
 ```
 
 Skrip `scripts/sinkron-vo.mjs`:
@@ -74,6 +77,9 @@ harus membaca terjemahan kata per kata sama persis (tanda kurung boleh diabaikan
 
 Rekaman sendiri juga bisa: transkripsi dengan Whisper/Scribe, ubah ke format `{ words: [{ text, type: 'word', start, end }] }`,
 dan sisipkan token `[long pause]` di batas scene.
+
+Catatan render: hindari `box-shadow` berukuran ratusan piksel; Chromium memotongnya menjadi kotak.
+Pakai komponen `Glow` (radial-gradient) di `components/alam.tsx`.
 
 ## Placeholder yang masih perlu diganti sebelum upload
 

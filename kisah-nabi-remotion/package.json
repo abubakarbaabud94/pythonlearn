@@ -11,7 +11,9 @@
     "typecheck": "tsc --noEmit",
     "sinkron-vo": "node scripts/sinkron-vo.mjs --id yunus --audio voiceover/yunus-raw.mp3 --kata voiceover/yunus-words.json --tempo 1.08 --lambat 5",
     "sinkron-vo-2": "node scripts/sinkron-vo.mjs --id yunus-2 --audio voiceover/yunus-2-raw.mp3 --kata voiceover/yunus-2-words.json --tempo 1.08 --lambat 2",
-    "render-2": "remotion render Yunus2 out/yunus-2.mp4"
+    "render-2": "remotion render Yunus2 out/yunus-2.mp4",
+    "sinkron-vo-zakariya": "node scripts/sinkron-vo.mjs --id zakariya --audio voiceover/zakariya-raw.mp3 --kata voiceover/zakariya-words.json --tempo 1.08 --lambat 4",
+    "render-zakariya": "remotion render Zakariya out/zakariya.mp4"
   },
   "dependencies": {
     "@fontsource/amiri-quran": "5.3.0",

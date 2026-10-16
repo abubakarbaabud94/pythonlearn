@@ -7,10 +7,17 @@ import { createRequire } from 'node:module';
 const require = createRequire(import.meta.url);
 
 // Tambahkan rujukan untuk episode baru di sini ("surah:ayat" atau "surah:awal-akhir").
-const REFS = ['21:87', '21:88', '37:139-148', '10:98', '68:48-50'];
+const REFS = [
+  // Nabi Yunus
+  '21:87', '21:88', '37:139-148', '10:98', '68:48-50',
+  // Nabi Zakariya
+  '3:37-41', '19:2-15', '21:89-90',
+];
 
 // Nama surah versi Indonesia (transliterasi bawaan paket memakai ejaan Inggris).
 const NAMA_SURAH = {
+  3: "Āli 'Imrān",
+  19: 'Maryam',
   10: 'Yunus',
   21: "Al-Anbiya'",
   37: 'Aṣ-Ṣaffat',
