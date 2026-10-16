@@ -1,0 +1,82 @@
+{
+  "_sumber": "Teks Uthmani: QuranEnc (quranenc.com). Terjemahan: Kementerian Agama RI via QuranEnc. Diambil dari paket npm quran-json@3.1.2.",
+  "ayat": {
+    "21:87": {
+      "surah": 21,
+      "ayat": 87,
+      "namaSurah": "Al-Anbiya'",
+      "arab": "وَذَا ٱلنُّونِ إِذ ذَّهَبَ مُغَٰضِبٗا فَظَنَّ أَن لَّن نَّقۡدِرَ عَلَيۡهِ فَنَادَىٰ فِي ٱلظُّلُمَٰتِ أَن لَّآ إِلَٰهَ إِلَّآ أَنتَ سُبۡحَٰنَكَ إِنِّي كُنتُ مِنَ ٱلظَّـٰلِمِينَ",
+      "terjemahan": "Dan (ingatlah kisah) Żun Nūn (Yunus), ketika dia pergi dalam keadaan marah, lalu dia menyangka bahwa Kami tidak akan menyulitkannya, maka dia berdoa dalam keadaan yang sangat gelap, \"Tidak ada tuhan selain Engkau, Mahasuci Engkau. Sungguh, aku termasuk orang-orang yang zalim\""
+    },
+    "21:88": {
+      "surah": 21,
+      "ayat": 88,
+      "namaSurah": "Al-Anbiya'",
+      "arab": "فَٱسۡتَجَبۡنَا لَهُۥ وَنَجَّيۡنَٰهُ مِنَ ٱلۡغَمِّۚ وَكَذَٰلِكَ نُـۨجِي ٱلۡمُؤۡمِنِينَ",
+      "terjemahan": "Maka kami kabulkan (doa)nya dan Kami selamatkan dia dari kedukaan. Dan demikianlah Kami menyelamatkan orang-orang yang beriman"
+    },
+    "37:139": {
+      "surah": 37,
+      "ayat": 139,
+      "namaSurah": "Aṣ-Ṣaffat",
+      "arab": "وَإِنَّ يُونُسَ لَمِنَ ٱلۡمُرۡسَلِينَ",
+      "terjemahan": "Dan sungguh, Yunus benar-benar termasuk salah seorang rasul"
+    },
+    "37:140": {
+      "surah": 37,
+      "ayat": 140,
+      "namaSurah": "Aṣ-Ṣaffat",
+      "arab": "إِذۡ أَبَقَ إِلَى ٱلۡفُلۡكِ ٱلۡمَشۡحُونِ",
+      "terjemahan": "(ingatlah) ketika dia lari, ke kapal yang penuh muatan"
+    },
+    "37:141": {
+      "surah": 37,
+      "ayat": 141,
+      "namaSurah": "Aṣ-Ṣaffat",
+      "arab": "فَسَاهَمَ فَكَانَ مِنَ ٱلۡمُدۡحَضِينَ",
+      "terjemahan": "(kemudian dia ikut diundi ternyata dia termasuk orang-orang yang kalah (dalam undian)"
+    },
+    "37:142": {
+      "surah": 37,
+      "ayat": 142,
+      "namaSurah": "Aṣ-Ṣaffat",
+      "arab": "فَٱلۡتَقَمَهُ ٱلۡحُوتُ وَهُوَ مُلِيمٞ",
+      "terjemahan": "Maka dia ditelan oleh ikan besar dalam keadaan tercela"
+    },
+    "37:143": {
+      "surah": 37,
+      "ayat": 143,
+      "namaSurah": "Aṣ-Ṣaffat",
+      "arab": "فَلَوۡلَآ أَنَّهُۥ كَانَ مِنَ ٱلۡمُسَبِّحِينَ",
+      "terjemahan": "Maka sekiranya dia tidak termasuk orang yang banyak berzikir (bertasbih) kepada Allah"
+    },
+    "37:144": {
+      "surah": 37,
+      "ayat": 144,
+      "namaSurah": "Aṣ-Ṣaffat",
+      "arab": "لَلَبِثَ فِي بَطۡنِهِۦٓ إِلَىٰ يَوۡمِ يُبۡعَثُونَ",
+      "terjemahan": "niscaya dia akan tetap tinggal di perut (ikan itu) sampai Hari Berbangkit"
+    },
+    "37:145": {
+      "surah": 37,
+      "ayat": 145,
+      "namaSurah": "Aṣ-Ṣaffat",
+      "arab": "۞فَنَبَذۡنَٰهُ بِٱلۡعَرَآءِ وَهُوَ سَقِيمٞ",
+      "terjemahan": "Kemudian Kami lemparkan dia ke daratan yang tandus, sedang dia dalam keadaan sakit"
+    },
+    "37:146": {
+      "surah": 37,
+      "ayat": 146,
+      "namaSurah": "Aṣ-Ṣaffat",
+      "arab": "وَأَنۢبَتۡنَا عَلَيۡهِ شَجَرَةٗ مِّن يَقۡطِينٖ",
+      "terjemahan": "Kemudian untuk dia Kami tumbuhkan sebatang pohon dari jenis labu"
+    },
+    "10:98": {
+      "surah": 10,
+      "ayat": 98,
+      "namaSurah": "Yunus",
+      "arab": "فَلَوۡلَا كَانَتۡ قَرۡيَةٌ ءَامَنَتۡ فَنَفَعَهَآ إِيمَٰنُهَآ إِلَّا قَوۡمَ يُونُسَ لَمَّآ ءَامَنُواْ كَشَفۡنَا عَنۡهُمۡ عَذَابَ ٱلۡخِزۡيِ فِي ٱلۡحَيَوٰةِ ٱلدُّنۡيَا وَمَتَّعۡنَٰهُمۡ إِلَىٰ حِينٖ",
+      "terjemahan": "Maka mengapa tidak ada (penduduk) suatu negeri pun yang beriman, lalu imannya itu bermanfaat baginya selain kaum Yunus. Ketika mereka (kaum Yunus itu) beriman, Kami hilangkan dari mereka azab yang menghinakan dalam kehidupan dunia, dan Kami beri kesenangan kepada mereka sampai waktu tertentu"
+    }
+  }
+}

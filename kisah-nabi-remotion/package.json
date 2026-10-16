@@ -1,0 +1,32 @@
+{
+  "name": "kisah-nabi-remotion",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Template motion graphic seri kisah nabi (9:16) dengan Remotion",
+  "scripts": {
+    "ayat": "node scripts/extract-ayat.mjs",
+    "studio": "remotion studio",
+    "render": "remotion render Yunus out/yunus.mp4",
+    "still": "remotion still Yunus out/still.png",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@fontsource/amiri-quran": "5.3.0",
+    "@fontsource/cinzel": "5.3.0",
+    "@fontsource/inter": "5.3.0",
+    "@fontsource/scheherazade-new": "5.3.0",
+    "@remotion/captions": "4.0.536",
+    "@remotion/cli": "4.0.536",
+    "@remotion/noise": "4.0.536",
+    "react": "19.1.1",
+    "react-dom": "19.1.1",
+    "remotion": "4.0.536"
+  },
+  "devDependencies": {
+    "@remotion/bundler": "4.0.536",
+    "@remotion/renderer": "4.0.536",
+    "@types/react": "19.1.12",
+    "quran-json": "3.1.2",
+    "typescript": "5.9.3"
+  }
+}
