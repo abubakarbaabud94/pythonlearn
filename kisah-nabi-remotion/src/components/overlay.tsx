@@ -2,6 +2,7 @@ import React from 'react';
 import { AbsoluteFill, interpolate, spring, useCurrentFrame, useVideoConfig } from 'remotion';
 import ayatData from '../data/ayat.json';
 import { useCueWords, useCues } from '../lib/cues';
+import { useMomen } from '../lib/momen';
 import { COLORS, FONTS, SAFE } from '../theme';
 import type { Episode, Sumber } from '../types';
 
@@ -78,8 +79,8 @@ export const SourceTag: React.FC<{ sumber: Sumber }> = ({ sumber }) => {
 };
 
 export const SeriesBadge: React.FC<{ episode: Episode }> = ({ episode }) => {
-  const frame = useCurrentFrame();
-  const op = interpolate(frame, [0, 12], [0, 1], clamp);
+  // Tampil penuh sejak frame 0 (bagian dari thumbnail).
+  const op = 1;
   return (
     <div
       style={{
@@ -105,13 +106,15 @@ export const SeriesBadge: React.FC<{ episode: Episode }> = ({ episode }) => {
 /** Ukuran font Cinzel agar satu baris muat di lebar ±940px (rata-rata lebar huruf kapital ±0,8em). */
 const ukuranMuat = (teks: string, maks: number) => Math.min(maks, Math.floor(940 / (teks.length * 0.8)));
 
-/** Judul pembuka yang menghantam masuk di detik pertama. */
+/** Judul pembuka: sudah utuh di frame 0 (thumbnail), hantaman SFX menandai kemunculannya. */
 export const HookTitle: React.FC<{ episode: Episode }> = ({ episode }) => {
   const frame = useCurrentFrame();
-  const { fps } = useVideoConfig();
-  const b1 = spring({ frame: frame - 6, fps, config: { damping: 14, stiffness: 160 } });
-  const b2 = spring({ frame: frame - 20, fps, config: { damping: 14, stiffness: 160 } });
-  const garis = spring({ frame: frame - 30, fps, config: { damping: 200 } });
+  // Frame 0 = thumbnail autoplay: judul sudah utuh sejak frame pertama (tanpa animasi masuk),
+  // lalu bernafas pelan agar tidak diam.
+  const b1 = 1;
+  const b2 = 1;
+  const garis = 1;
+  const nafas = 1 + Math.min(frame, 240) * 0.00018;
   const teks: React.CSSProperties = {
     fontFamily: FONTS.judul,
     fontWeight: 900,
@@ -124,7 +127,7 @@ export const HookTitle: React.FC<{ episode: Episode }> = ({ episode }) => {
     filter: 'drop-shadow(0 6px 24px rgba(0,0,0,0.8))',
   };
   return (
-    <AbsoluteFill style={{ justifyContent: 'center', alignItems: 'center', paddingBottom: 380 }}>
+    <AbsoluteFill style={{ justifyContent: 'center', alignItems: 'center', paddingBottom: 380, transform: `scale(${nafas})` }}>
       <div
         style={{
           ...teks,
@@ -305,6 +308,9 @@ export const TigaKegelapan: React.FC = () => {
   const { durationInFrames, fps } = useVideoConfig();
   const baris = ['Gelap malam', 'Gelap lautan', 'Gelap perut ikan'];
   const cues = useCues(3, [0.08, 0.38, 0.68], durationInFrames);
+  // Saat kata "tiga" diucapkan, ketiga baris muncul samar dulu, lalu menyala satu per satu.
+  const mTiga = useMomen('tiga', -999);
+  const samar = interpolate(frame, [mTiga, mTiga + 18], [0, 0.16], clamp);
   return (
     <AbsoluteFill style={{ justifyContent: 'center', alignItems: 'center', gap: 34, paddingBottom: 260 }}>
       {baris.map((b, i) => {
@@ -317,8 +323,8 @@ export const TigaKegelapan: React.FC = () => {
               display: 'flex',
               alignItems: 'center',
               gap: 26,
-              opacity: s * (aktif ? 1 : 0.38),
-              transform: `translateX(${(1 - s) * -60}px)`,
+              opacity: Math.max(samar, s * (aktif ? 1 : 0.38)),
+              transform: `translateX(${(1 - s) * -60 * (samar > 0 ? 0 : 1)}px)`,
             }}
           >
             <span style={{ fontFamily: FONTS.judul, fontWeight: 900, fontSize: 60, color: COLORS.gold, width: 60 }}>

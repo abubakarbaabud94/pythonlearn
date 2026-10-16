@@ -3,6 +3,7 @@ import { AbsoluteFill, Easing, interpolate, useCurrentFrame, useVideoConfig } fr
 import { noise2D } from '@remotion/noise';
 import { Layer } from '../lib/camera';
 import { useCues } from '../lib/cues';
+import { denyut, useMomen } from '../lib/momen';
 import {
   ArakCahaya,
   Glow,
@@ -16,6 +17,8 @@ import {
   IkanBesar,
   Kapal,
   Kilat,
+  Ledakan,
+  Meteor,
   Kota,
   Langit,
   Matahari,
@@ -29,6 +32,12 @@ import { BuahBuahan, CerukMihrab, DindingBatu, Jendela, Pelita, Sajadah } from '
 import type { Latar as LatarType } from '../types';
 
 const clamp = { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' } as const;
+
+/** Posisi kilat (fraksi durasi scene); dibaca juga oleh jalur SFX agar guntur pas dengan kilatnya. */
+export const KILAT: Partial<Record<LatarType, number[]>> = { badai: [0.18, 0.62], 'kota-azab': [0.3, 0.72] };
+/** Fraksi durasi saat ikan menelan (bawah-laut), untuk SFX. */
+export const SAAT_TELAN = 0.7;
+const frameKilat = (jenis: LatarType, durasi: number) => (KILAT[jenis] ?? []).map((f) => Math.round(durasi * f));
 
 const useProgres = () => {
   const frame = useCurrentFrame();
@@ -109,7 +118,7 @@ const Badai: React.FC = () => {
       <Layer depth={0.1}>
         <Awan y={150} warna="rgba(40,52,64,0.9)" jumlah={10} />
       </Layer>
-      <Kilat frames={[Math.round(durasi * 0.18), Math.round(durasi * 0.62)]} />
+      <Kilat frames={frameKilat('badai', durasi)} />
       <Layer depth={0.3}>
         <Gelombang y={1150} amp={40} panjang={520} kecepatan={1.1} fase={3} warna="#0c1822" />
       </Layer>
@@ -250,7 +259,7 @@ const PantaiFajar: React.FC = () => {
           <path d="M -400 1560 Q 200 1440 700 1500 Q 1100 1540 1500 1460 L 1500 2400 L -400 2400 Z" fill="#7a5a43" />
           <path d="M -400 1640 Q 300 1560 800 1620 Q 1200 1660 1500 1600 L 1500 2400 L -400 2400 Z" fill="#5a4030" />
         </svg>
-        <PohonLabu x={790} y={1610} progres={interpolate(p, [0.1, 0.95], [0, 1], clamp)} />
+        <PohonLabu x={890} y={1610} progres={interpolate(p, [0.1, 0.95], [0, 1], clamp)} />
       </Layer>
       <Vignette kekuatan={0.45} />
     </>
@@ -285,7 +294,7 @@ const KotaAzab: React.FC = () => {
       <Layer depth={0.1}>
         <Awan y={200 + turun} warna="rgba(25,4,6,0.96)" jumlah={13} seed="azab1" />
       </Layer>
-      <Kilat merah frames={[Math.round(durasi * 0.3), Math.round(durasi * 0.72)]} />
+      <Kilat merah frames={frameKilat('kota-azab', durasi)} />
       <Layer depth={0.2}>
         <Awan y={520 + turun * 1.4} warna="rgba(60,10,8,0.85)" jumlah={9} seed="azab2" />
       </Layer>
@@ -307,7 +316,10 @@ const KotaAzab: React.FC = () => {
 
 /** Part 2 · Taubat: arak-arakan cahaya keluar dari kota, awan mulai menipis. */
 const KotaTaubat: React.FC = () => {
-  const { p } = useProgres();
+  const { frame, p } = useProgres();
+  // Arak-arakan pelita mulai keluar dari kota saat kata "keluar" diucapkan.
+  const mKeluar = useMomen('keluar', -30);
+  const arak = interpolate(frame, [mKeluar - 6, mKeluar + 30], [0, 1], clamp);
   const awan = interpolate(p, [0, 1], [0.95, 0.45]);
   return (
     <>
@@ -323,7 +335,9 @@ const KotaTaubat: React.FC = () => {
       </Layer>
       <Layer depth={0.8}>
         <div style={{ position: 'absolute', left: -400, right: -400, top: 1420, bottom: -400, background: '#0a0608' }} />
-        <ArakCahaya />
+        <div style={{ position: 'absolute', inset: 0, opacity: arak }}>
+          <ArakCahaya />
+        </div>
       </Layer>
       <Vignette kekuatan={0.7} />
     </>
@@ -364,7 +378,9 @@ const KotaFajar: React.FC = () => {
 };
 
 /** Langit malam yang tenang di atas laut, dengan pantulan bulan. */
-const LangitMalam: React.FC = () => (
+const LangitMalam: React.FC = () => {
+  const mMeteor = useMomen('meteor', -999);
+  return (
   <>
     <Langit warna={['#03050c', '#0a1430', '#16264a']} stops={[0, 50, 66]} />
     <Layer depth={0.05}>
@@ -390,14 +406,23 @@ const LangitMalam: React.FC = () => (
     <Layer depth={0.7}>
       <Gelombang y={1520} amp={14} panjang={700} kecepatan={0.7} fase={2} warna="#060d1e" kilau="#8fa6d8" />
     </Layer>
+    <Layer depth={0.08}>
+      <Meteor mulai={mMeteor} dari={[980, 260]} ke={[420, 640]} />
+    </Layer>
     <Vignette kekuatan={0.7} />
   </>
-);
+  );
+};
 
 /** Zakariya · Interior mihrab: dinding batu, ceruk berbusur, pelita, jendela malam. */
 const MihrabDasar: React.FC<{ buah?: boolean; salju?: boolean; cahaya?: boolean }> = ({ buah, salju, cahaya }) => {
-  const { p } = useProgres();
+  const { frame, p, durasi } = useProgres();
   const terang = cahaya ? interpolate(p, [0.05, 0.6], [0, 1], clamp) : 0;
+  // Momen dari voiceover: buah muncul, buah berpendar ("Itu dari Allah"), pelita menyala ("berdoa"), kabar gembira.
+  const mBuah = useMomen('buah', salju ? -60 : durasi * 0.05);
+  const pendar = denyut(frame, useMomen('pendar', -999), 12, 90);
+  const nyala = denyut(frame, useMomen('nyala', -999), 14, 110);
+  const mKabar = useMomen('kabar', -999);
   return (
     <>
       <Layer depth={0.15}>
@@ -406,24 +431,28 @@ const MihrabDasar: React.FC<{ buah?: boolean; salju?: boolean; cahaya?: boolean 
         <Jendela x={820} y={330} salju={salju} />
       </Layer>
       <Layer depth={0.3}>
-        <CerukMihrab terang={terang} />
+        <CerukMihrab terang={Math.max(terang, nyala * 0.7, pendar * 0.5)} />
       </Layer>
-      {cahaya && (
-        <Layer depth={0.2} style={{ opacity: terang }}>
+      {(cahaya || pendar > 0) && (
+        <Layer depth={0.2} style={{ opacity: Math.max(terang, pendar * 0.85) }}>
           <BerkasCahaya jumlah={9} warna="255,225,160" kekuatan={0.42} asalX={540} />
         </Layer>
       )}
       <Layer depth={0.45}>
-        <Pelita x={540} y={560} kuat={cahaya ? 1 - terang * 0.4 : 1} />
+        <Pelita x={540} y={560} kuat={(cahaya ? 1 - terang * 0.4 : 1) * (1 + nyala * 1.1)} />
       </Layer>
       {buah && (
         <Layer depth={0.5}>
-          <BuahBuahan x={540} y={1490} muncul={interpolate(p, [0.05, 0.3], [0, 1], clamp)} />
+          {/* Rak batu di dalam ceruk: buah diletakkan di atas zona subtitle (y > 1330) agar tidak bertabrakan. */}
+          <div style={{ position: 'absolute', left: 320, top: 1262, width: 440, height: 30, background: '#3e2a19', borderTop: '4px solid #6b4a2a' }} />
+          <BuahBuahan x={540} y={1250} muncul={interpolate(frame, [mBuah, mBuah + 24], [0, 1], clamp)} />
+          <Glow x={540} y={1160} r={460} warna="255,215,130" kuat={pendar * 1.4} />
         </Layer>
       )}
       <Layer depth={0.8}>
         <Sajadah />
       </Layer>
+      <Ledakan x={540} y={900} mulai={mKabar} seed="kabar" />
       <Layer depth={0.6}>
         <Partikel
           jumlah={cahaya ? 55 : 24}
@@ -441,8 +470,11 @@ const MihrabDasar: React.FC<{ buah?: boolean; salju?: boolean; cahaya?: boolean 
 
 /** Ruang angkasa: penciptaan dari ketiadaan (QS. Maryam: 9). */
 const Kosmos: React.FC = () => {
-  const { frame, p } = useProgres();
-  const inti = interpolate(p, [0.45, 0.9], [0, 1], clamp);
+  const { frame, durasi } = useProgres();
+  // Titik cahaya muncul saat "Hal itu mudah…", meledak saat "…Aku ciptakan".
+  const mInti = useMomen('inti', durasi * 0.45);
+  const inti = interpolate(frame, [mInti, mInti + durasi * 0.4], [0, 1], { ...clamp, easing: Easing.out(Easing.cubic) });
+  const mLedak = useMomen('ledak', -999);
   return (
     <>
       <Langit warna={['#020108', '#06041a', '#0a0620']} />
@@ -462,6 +494,7 @@ const Kosmos: React.FC = () => {
       </Layer>
       <Glow x={540} y={810} r={120 + inti * 420} warna="255,230,180" kuat={inti} />
       <Glow x={540} y={810} r={30 + inti * 50} warna="255,250,235" kuat={inti * 2} />
+      <Ledakan x={540} y={810} mulai={mLedak} jumlah={70} jangkau={700} warna="235,225,255" seed="cipta" />
       <Vignette kekuatan={0.6} />
     </>
   );

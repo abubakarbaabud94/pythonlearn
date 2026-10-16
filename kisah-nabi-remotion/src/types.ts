@@ -41,6 +41,19 @@ export type Scene = {
   kaligrafi?: string;
   /** Regex kata di voiceover yang menjadi titik sinkron animasi (mis. "^gelapnya"). */
   cue?: string;
+  /** Event di tengah scene yang dipicu kata di voiceover (visual dibaca latar lewat useMomen, SFX opsional). */
+  momen?: Momen[];
+};
+
+export type JenisSfx = 'desir' | 'desir-lembut' | 'hantam' | 'gemuruh' | 'angin' | 'udara' | 'tik' | 'telan';
+
+export type Momen = {
+  /** Nama yang dibaca komponen latar, mis. 'buah', 'nyala', 'ledak'. */
+  nama: string;
+  /** Regex kata pemicu (kecocokan pertama di scene ini). */
+  kata: string;
+  sfx?: JenisSfx;
+  gain?: number;
 };
 
 /** Hasil scripts/sinkron-vo.mjs (waktu dalam detik). */

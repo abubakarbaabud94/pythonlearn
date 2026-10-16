@@ -619,3 +619,74 @@ export const ArakCahaya: React.FC<{ jumlah?: number; asalY?: number; seed?: stri
     </AbsoluteFill>
   );
 };
+
+/** Ledakan partikel cahaya dari satu titik, dimulai pada frame `mulai` (relatif scene). */
+export const Ledakan: React.FC<{ x: number; y: number; mulai: number; jumlah?: number; warna?: string; jangkau?: number; seed?: string }> = ({
+  x,
+  y,
+  mulai,
+  jumlah = 46,
+  warna = '255,220,150',
+  jangkau = 520,
+  seed = 'ledak',
+}) => {
+  const frame = useCurrentFrame();
+  const t = frame - mulai;
+  if (t < 0 || t > 75) return null;
+  return (
+    <AbsoluteFill>
+      {new Array(jumlah).fill(0).map((_, i) => {
+        const sudut = random(`${seed}a${i}`) * Math.PI * 2;
+        const jauh = jangkau * (0.35 + 0.65 * random(`${seed}d${i}`));
+        const p = 1 - Math.pow(1 - Math.min(1, t / 55), 3);
+        const r = 2 + random(`${seed}r${i}`) * 4;
+        const op = interpolate(t, [0, 6, 50, 75], [0, 1, 0.7, 0], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' });
+        return (
+          <div
+            key={i}
+            style={{
+              position: 'absolute',
+              left: x + Math.cos(sudut) * jauh * p - r,
+              top: y + Math.sin(sudut) * jauh * p - r,
+              width: r * 2,
+              height: r * 2,
+              borderRadius: '50%',
+              background: `rgb(${warna})`,
+              opacity: op,
+              boxShadow: `0 0 ${r * 3}px rgba(${warna},0.8)`,
+            }}
+          />
+        );
+      })}
+      <Glow x={x} y={y} r={420} warna={warna} kuat={interpolate(t, [0, 5, 40], [0, 1.2, 0], { extrapolateRight: 'clamp' })} />
+    </AbsoluteFill>
+  );
+};
+
+/** Bintang jatuh melintas langit selama ±20 frame sejak `mulai`. */
+export const Meteor: React.FC<{ mulai: number; dari: [number, number]; ke: [number, number] }> = ({ mulai, dari, ke }) => {
+  const frame = useCurrentFrame();
+  const t = (frame - mulai) / 20;
+  if (t < 0 || t > 1.3) return null;
+  const p = Math.min(1, t);
+  const x = dari[0] + (ke[0] - dari[0]) * p;
+  const y = dari[1] + (ke[1] - dari[1]) * p;
+  const sudut = Math.atan2(ke[1] - dari[1], ke[0] - dari[0]);
+  const op = t < 1 ? Math.min(1, t * 4) : 1 - (t - 1) / 0.3;
+  return (
+    <div
+      style={{
+        position: 'absolute',
+        left: x - 300,
+        top: y - 2,
+        width: 300,
+        height: 4,
+        transformOrigin: '100% 50%',
+        transform: `rotate(${sudut}rad)`,
+        background: 'linear-gradient(90deg, rgba(255,250,230,0), rgba(255,250,230,0.95))',
+        borderRadius: 4,
+        opacity: op,
+      }}
+    />
+  );
+};

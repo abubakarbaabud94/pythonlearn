@@ -58,6 +58,7 @@ export const yunus: Episode = {
       latar: 'kegelapan',
       overlay: 'tiga-kegelapan',
       cue: '^gelapnya',
+      momen: [{ nama: 'tiga', kata: '^tiga$', sfx: 'desir-lembut', gain: 0.22 }],
       kamera: { dari: { x: 0, y: 0, zoom: 1.0 }, ke: { x: 0, y: 0, zoom: 1.1 } },
       narasi:
         'Para mufassir menjelaskan, ia berada dalam tiga kegelapan sekaligus: gelapnya malam, gelapnya lautan, dan gelapnya perut ikan.',

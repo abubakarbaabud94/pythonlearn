@@ -4,7 +4,9 @@ import { loadFonts } from './fonts';
 import { Camera } from './lib/camera';
 import { captionsDariVo, perkiraanCaptions } from './lib/captions';
 import { CueContext, type Cue } from './lib/cues';
-import { Latar } from './scenes/Latar';
+import { MomenContext } from './lib/momen';
+import { KILAT, Latar, SAAT_TELAN } from './scenes/Latar';
+import { Grain } from './components/tekstur';
 import { Subtitle } from './components/Subtitle';
 import {
   AyatCard,
@@ -16,13 +18,13 @@ import {
   TigaKegelapan,
 } from './components/overlay';
 import { COLORS } from './theme';
-import type { Episode, Scene } from './types';
+import type { Episode, JenisSfx, Scene } from './types';
 
 loadFonts();
 
 const TRANSISI = 15; // frame crossfade antar-scene
 
-type Posisi = { scene: Scene; dari: number; dur: number; cues: Cue[] };
+type Posisi = { scene: Scene; dari: number; dur: number; cues: Cue[]; momen: Record<string, number> };
 
 /** Posisi tiap scene di timeline. Dengan voiceover, durasi mengikuti voiceover; tanpa itu, `detik`. */
 const susunScene = (ep: Episode, fps: number): Posisi[] => {
@@ -40,7 +42,13 @@ const susunScene = (ep: Episode, fps: number): Posisi[] => {
       vo && pola
         ? vo.kata.filter((k) => k.adegan === i && pola.test(k.text)).map((k) => ({ frame: Math.round(k.start * fps) - dari, text: k.text }))
         : [];
-    return { scene, dari, dur, cues };
+    const momen: Record<string, number> = {};
+    for (const m of scene.momen ?? []) {
+      const pola = new RegExp(m.kata, 'i');
+      const k = vo?.kata.find((w) => w.adegan === i && pola.test(w.text));
+      if (k) momen[m.nama] = Math.round(k.start * fps) - dari;
+    }
+    return { scene, dari, dur, cues, momen };
   });
 };
 
@@ -87,7 +95,7 @@ export const EpisodeVideo: React.FC<{ episode: Episode }> = ({ episode }) => {
 
   return (
     <AbsoluteFill style={{ background: COLORS.ink }}>
-      {posisi.map(({ scene, dari, dur, cues }, i) => (
+      {posisi.map(({ scene, dari, dur, cues, momen }, i) => (
         <Sequence
           key={scene.id}
           name={scene.id}
@@ -95,11 +103,15 @@ export const EpisodeVideo: React.FC<{ episode: Episode }> = ({ episode }) => {
           durationInFrames={i === posisi.length - 1 ? dur : dur + TRANSISI}
         >
           <CueContext.Provider value={cues}>
-            <SceneView scene={scene} episode={episode} fadeIn={i > 0} />
+            <MomenContext.Provider value={momen}>
+              <SceneView scene={scene} episode={episode} fadeIn={i > 0} />
+            </MomenContext.Provider>
           </CueContext.Provider>
         </Sequence>
       ))}
+      <Grain />
       <Subtitle captions={captions} sembunyikan={sembunyikan} />
+      <JalurSfx posisi={posisi} />
       {episode.vo && <Audio src={staticFile(episode.vo.audio)} />}
       {episode.audio?.ambience && (
         <Audio
@@ -112,5 +124,58 @@ export const EpisodeVideo: React.FC<{ episode: Episode }> = ({ episode }) => {
         />
       )}
     </AbsoluteFill>
+  );
+};
+
+type Bunyi = { jenis: JenisSfx; frame: number; gain: number; durasi?: number };
+
+/**
+ * Sound design otomatis dari struktur episode (tanpa bunyi bernada):
+ * desir di setiap pergantian scene, hantaman pada hook/kartu ayat/penutup, tik saat label sumber muncul,
+ * guntur tepat di frame kilat, angin di scene badai, bunyi "telan", tiga hantaman pada tiga kegelapan,
+ * dan SFX dari `momen` yang dipicu kata di voiceover.
+ */
+const susunBunyi = (posisi: Posisi[], fps: number): Bunyi[] => {
+  const b: Bunyi[] = [];
+  posisi.forEach(({ scene, dari, dur, cues, momen }, i) => {
+    const durSeq = i === posisi.length - 1 ? dur : dur + TRANSISI;
+    if (i > 0) {
+      const lembut = scene.overlay === 'ayat' || scene.overlay === 'penutup';
+      // Puncak desir (±0,55 dtk) jatuh tepat di awal scene baru.
+      b.push({ jenis: lembut ? 'desir-lembut' : 'desir', frame: dari - Math.round((lembut ? 0.95 : 0.55) * fps), gain: lembut ? 0.32 : 0.26 });
+    }
+    if (scene.overlay === 'hook') b.push({ jenis: 'hantam', frame: dari, gain: 0.55 });
+    if (scene.overlay === 'ayat') b.push({ jenis: 'hantam', frame: dari + 2, gain: 0.28 });
+    if (scene.overlay === 'penutup') b.push({ jenis: 'hantam', frame: dari + 4, gain: 0.45 });
+    if (scene.sumber) b.push({ jenis: 'tik', frame: dari + 8, gain: 0.3 });
+    for (const f of KILAT[scene.latar] ?? []) b.push({ jenis: 'gemuruh', frame: dari + Math.round(durSeq * f), gain: 0.5 });
+    if (scene.latar === 'badai' || scene.latar === 'kota-azab') b.push({ jenis: 'angin', frame: dari, gain: 0.2, durasi: durSeq });
+    if (scene.latar === 'bawah-laut') b.push({ jenis: 'telan', frame: dari + Math.round(durSeq * SAAT_TELAN), gain: 0.55 });
+    if (scene.overlay === 'tiga-kegelapan') cues.slice(0, 3).forEach((c) => b.push({ jenis: 'hantam', frame: dari + c.frame, gain: 0.22 }));
+    for (const m of scene.momen ?? []) {
+      if (m.sfx && momen[m.nama] !== undefined) b.push({ jenis: m.sfx, frame: dari + momen[m.nama], gain: m.gain ?? 0.4 });
+    }
+  });
+  return b.filter((x) => x.frame >= 0);
+};
+
+const JalurSfx: React.FC<{ posisi: Posisi[] }> = ({ posisi }) => {
+  const { fps } = useVideoConfig();
+  return (
+    <>
+      {susunBunyi(posisi, fps).map((x, i) => (
+        <Sequence key={i} from={x.frame} durationInFrames={x.durasi} layout="none" name={`sfx-${x.jenis}`}>
+          {x.durasi ? (
+            <Audio
+              src={staticFile(`sfx/${x.jenis}.wav`)}
+              loop
+              volume={(f) => interpolate(f, [0, 20, x.durasi! - 20, x.durasi!], [0, x.gain, x.gain, 0], { extrapolateRight: 'clamp' })}
+            />
+          ) : (
+            <Audio src={staticFile(`sfx/${x.jenis}.wav`)} volume={x.gain} />
+          )}
+        </Sequence>
+      ))}
+    </>
   );
 };

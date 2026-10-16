@@ -53,6 +53,7 @@ export const yunus2: Episode = {
       narasi:
         'Menurut para mufassir, mereka beriman ketika tanda-tanda azab mulai tampak. Mereka keluar, merendahkan diri, dan memohon ampun kepada Allah.',
       sumber: { tipe: 'tafsir', label: 'Ibnu Katsir, QS. Yunus: 98' },
+      momen: [{ nama: 'keluar', kata: '^keluar', sfx: 'desir-lembut', gain: 0.25 }],
     },
     {
       id: 'seratus-ribu',
@@ -72,6 +73,7 @@ export const yunus2: Episode = {
       narasi:
         "Kisah ini juga menjadi pesan bagi Nabi Muhammad, shallallahu 'alaihi wa sallam: Bersabarlah terhadap ketetapan Tuhanmu, dan janganlah seperti orang yang berada dalam perut ikan.",
       sumber: { tipe: 'quran', label: 'Al-Qalam: 48' },
+      momen: [{ nama: 'meteor', kata: '^Bersabarlah', sfx: 'desir-lembut', gain: 0.3 }],
     },
     {
       id: 'dipilih',

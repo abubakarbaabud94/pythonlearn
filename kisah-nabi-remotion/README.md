@@ -43,6 +43,8 @@ scripts/
   extract-ayat.mjs      ← ambil ayat dari sumber terverifikasi
   buat-ambience.sh      ← suara laut sintetis (placeholder)
   stills.mjs            ← render beberapa frame PNG untuk cek cepat
+  sheet.mjs             ← contact sheet berlabel waktu di lebar HP (npm run sheet)
+  buat-sfx.py           ← pustaka SFX sintetis tanpa nada (npm run sfx)
 ```
 
 ## Membuat episode baru
@@ -81,10 +83,53 @@ dan sisipkan token `[long pause]` di batas scene.
 Catatan render: hindari `box-shadow` berukuran ratusan piksel; Chromium memotongnya menjadi kotak.
 Pakai komponen `Glow` (radial-gradient) di `components/alam.tsx`.
 
+## Sound design (SFX)
+
+`npm run sfx` membuat pustaka SFX di `public/sfx/` dengan Python standar (tanpa sampel, tanpa lisensi, hasil identik).
+**Sengaja tanpa bunyi bernada** (chime, pad, melodi): hanya desir, hantaman rendah, guntur, angin, desir udara, ketukan,
+dan bunyi "telan" bawah air, agar tidak terdengar sebagai musik.
+
+Penempatannya otomatis dari struktur episode (`JalurSfx` di `src/Episode.tsx`):
+
+| Kejadian | SFX |
+|---|---|
+| Pergantian scene | `desir` (puncaknya tepat di awal scene), `desir-lembut` sebelum kartu ayat & penutup |
+| Judul hook (frame 0), kartu ayat, penutup | `hantam` |
+| Label sumber muncul | `tik` |
+| Kilat (`KILAT` di `Latar.tsx`) | `gemuruh` di frame kilat yang sama |
+| Scene badai / kota di ambang azab | `angin` (loop sepanjang scene) |
+| Ikan menelan | `telan` |
+| Tiga kegelapan | `hantam` lembut di tiap kata "gelapnya" |
+| `momen` dengan `sfx` | SFX di kata pemicunya |
+
+## Momen: event di tengah scene yang dipicu kata
+
+Aturan "ada hal baru setiap 2–4 detik": scene panjang diberi `momen`, yaitu kata di voiceover yang memicu event visual
+(dibaca latar lewat `useMomen`) dan SFX opsional:
+
+```ts
+momen: [
+  { nama: 'buah', kata: '^makanan', sfx: 'udara', gain: 0.35 },   // buah muncul di mihrab
+  { nama: 'pendar', kata: '^Allah', sfx: 'udara', gain: 0.5 },    // buah berpendar + berkas cahaya
+],
+```
+
+Nama yang dikenali latar: `buah`, `pendar`, `nyala`, `kabar` (mihrab), `inti`, `ledak` (kosmos), `keluar` (kota-taubat),
+`meteor` (langit-malam), `tiga` (overlay tiga kegelapan).
+
+## Review: contact sheet
+
+```bash
+npm run sheet -- Zakariya 2.5   # satu frame tiap 2,5 dtk, dirender di lebar HP (360 px) -> out/sheets/Zakariya-NN.png
+```
+
+Periksa tiap lembar sebelum render final: subtitle tidak menabrak objek, teks di zona aman, tidak ada layar diam
+lebih dari ±4 detik, frame 0 sudah berisi judul (thumbnail).
+
 ## Placeholder yang masih perlu diganti sebelum upload
 
 | Placeholder | Ganti dengan |
 |---|---|
 | Ilustrasi prosedural (SVG) | Ilustrasi berlapis PNG (langit / tengah / depan) di `public/`, tetap dibungkus `<Layer depth>` agar parallax bekerja |
-| Ambience sintetis | Sound design asli (ombak, angin, gemuruh) berlisensi jelas |
+| Ambience laut & SFX sintetis | Boleh dipakai; ganti dengan rekaman asli bila ingin lebih kaya |
 | — | Naskah ditinjau ustadz sebelum publikasi |

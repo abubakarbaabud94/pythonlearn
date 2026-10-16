@@ -25,6 +25,7 @@ export const zakariya: Episode = {
       overlay: 'hook',
       kamera: { dari: { x: 0, y: 40, zoom: 1.15 }, ke: { x: 0, y: 0, zoom: 1.0 } },
       narasi: 'Rambutnya sudah memutih. Tulangnya sudah melemah. Istrinya mandul. Tapi ia tetap berdoa… dengan suara yang lembut.',
+      momen: [{ nama: 'nyala', kata: '^berdoa', sfx: 'udara', gain: 0.45 }],
     },
     {
       id: 'pengasuh',
@@ -34,6 +35,10 @@ export const zakariya: Episode = {
       narasi:
         'Zakariya adalah pengasuh Maryam. Setiap kali ia masuk ke mihrab, ia mendapati makanan di sisinya. Ia bertanya, Wahai Maryam, dari mana ini engkau peroleh? Maryam menjawab, Itu dari Allah.',
       sumber: { tipe: 'quran', label: "Āli 'Imrān: 37" },
+      momen: [
+        { nama: 'buah', kata: '^makanan', sfx: 'udara', gain: 0.35 },
+        { nama: 'pendar', kata: '^Allah', sfx: 'udara', gain: 0.5 },
+      ],
     },
     {
       id: 'luar-musim',
@@ -50,6 +55,7 @@ export const zakariya: Episode = {
       kamera: { dari: { x: 0, y: 0, zoom: 1.0 }, ke: { x: 0, y: -40, zoom: 1.1 } },
       narasi: 'Melihat itu… di sanalah Zakariya berdoa kepada Tuhannya.',
       sumber: { tipe: 'quran', label: "Āli 'Imrān: 38" },
+      momen: [{ nama: 'nyala', kata: '^berdoa', sfx: 'udara', gain: 0.45 }],
     },
     {
       id: 'doa',
@@ -71,6 +77,10 @@ export const zakariya: Episode = {
       narasi:
         'Lalu para malaikat memanggilnya, ketika ia berdiri melaksanakan salat di mihrab: Allah menyampaikan kabar gembira kepadamu, dengan kelahiran Yahya.',
       sumber: { tipe: 'quran', label: "Āli 'Imrān: 39" },
+      momen: [
+        { nama: 'kabar', kata: '^Yahya', sfx: 'hantam', gain: 0.3 },
+        { nama: 'kabar-udara', kata: '^Yahya', sfx: 'udara', gain: 0.5 },
+      ],
     },
     {
       id: 'nama',
@@ -89,6 +99,10 @@ export const zakariya: Episode = {
       narasi:
         'Zakariya bertanya, bagaimana aku akan mempunyai anak, padahal istriku mandul dan aku sudah sangat tua? Allah berfirman: Hal itu mudah bagi-Ku. Engkau telah Aku ciptakan sebelum itu, padahal engkau belum berwujud sama sekali.',
       sumber: { tipe: 'quran', label: 'Maryam: 8–9' },
+      momen: [
+        { nama: 'inti', kata: '^Hal$', sfx: 'udara', gain: 0.5 },
+        { nama: 'ledak', kata: '^ciptakan', sfx: 'hantam', gain: 0.32 },
+      ],
     },
     {
       id: 'dikabulkan',
