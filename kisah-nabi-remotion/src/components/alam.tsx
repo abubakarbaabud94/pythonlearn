@@ -429,7 +429,7 @@ export const Hujan: React.FC<{ jumlah?: number }> = ({ jumlah = 160 }) => {
 };
 
 /** Kilat: kilatan layar + petir bercabang pada frame tertentu (relatif terhadap scene). */
-export const Kilat: React.FC<{ frames: number[] }> = ({ frames }) => {
+export const Kilat: React.FC<{ frames: number[]; merah?: boolean }> = ({ frames, merah }) => {
   const frame = useCurrentFrame();
   const aktif = frames.find((f) => frame >= f && frame < f + 10);
   if (aktif === undefined) return null;
@@ -443,9 +443,16 @@ export const Kilat: React.FC<{ frames: number[] }> = ({ frames }) => {
   }
   return (
     <AbsoluteFill>
-      <AbsoluteFill style={{ background: `rgba(210,225,255,${kilau * 0.55})` }} />
+      <AbsoluteFill style={{ background: merah ? `rgba(255,120,90,${kilau * 0.35})` : `rgba(210,225,255,${kilau * 0.55})` }} />
       <svg width={1080} height={1920}>
-        <path d={d} stroke="#EAF2FF" strokeWidth={5} fill="none" opacity={kilau} style={{ filter: 'drop-shadow(0 0 12px #9cc4ff)' }} />
+        <path
+          d={d}
+          stroke={merah ? '#FFE0D0' : '#EAF2FF'}
+          strokeWidth={5}
+          fill="none"
+          opacity={kilau}
+          style={{ filter: `drop-shadow(0 0 12px ${merah ? '#ff7a5c' : '#9cc4ff'})` }}
+        />
       </svg>
     </AbsoluteFill>
   );
@@ -548,3 +555,47 @@ export const Vignette: React.FC<{ kekuatan?: number }> = ({ kekuatan = 0.75 }) =
     }}
   />
 );
+
+/**
+ * Arak-arakan cahaya pelita yang keluar dari kota menuju padang: simbol penduduk yang keluar
+ * memohon ampun, tanpa menggambar satu pun sosok manusia.
+ */
+export const ArakCahaya: React.FC<{ jumlah?: number; asalY?: number; seed?: string }> = ({
+  jumlah = 70,
+  asalY = 1400,
+  seed = 'arak',
+}) => {
+  const frame = useCurrentFrame();
+  return (
+    <AbsoluteFill>
+      {new Array(jumlah).fill(0).map((_, i) => {
+        const siklus = 160 + random(`${seed}s${i}`) * 140;
+        const t = ((frame + random(`${seed}o${i}`) * siklus) % siklus) / siklus;
+        const x0 = 380 + random(`${seed}a${i}`) * 320;
+        const x1 = -250 + random(`${seed}b${i}`) * 1580;
+        const cx = (x0 + x1) / 2 + (random(`${seed}c${i}`) - 0.5) * 300;
+        // Kurva Bezier kuadrat dari gerbang kota ke depan layar; makin dekat makin besar (perspektif).
+        const x = (1 - t) * (1 - t) * x0 + 2 * (1 - t) * t * cx + t * t * x1;
+        const y = (1 - t) * (1 - t) * asalY + 2 * (1 - t) * t * (asalY + 120) + t * t * 2150;
+        const r = 2 + t * t * 9;
+        const op = interpolate(t, [0, 0.12, 0.8, 1], [0, 1, 0.9, 0]) * (0.7 + 0.3 * Math.sin(frame / 5 + i));
+        return (
+          <div
+            key={i}
+            style={{
+              position: 'absolute',
+              left: x - r,
+              top: y - r,
+              width: r * 2,
+              height: r * 2,
+              borderRadius: '50%',
+              background: '#FFD08A',
+              opacity: op,
+              boxShadow: `0 0 ${r * 4}px ${r * 1.5}px rgba(255,180,90,0.55)`,
+            }}
+          />
+        );
+      })}
+    </AbsoluteFill>
+  );
+};

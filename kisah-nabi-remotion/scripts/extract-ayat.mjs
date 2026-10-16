@@ -7,7 +7,7 @@ import { createRequire } from 'node:module';
 const require = createRequire(import.meta.url);
 
 // Tambahkan rujukan untuk episode baru di sini ("surah:ayat" atau "surah:awal-akhir").
-const REFS = ['21:87', '21:88', '37:139-146', '10:98'];
+const REFS = ['21:87', '21:88', '37:139-148', '10:98', '68:48-50'];
 
 // Nama surah versi Indonesia (transliterasi bawaan paket memakai ejaan Inggris).
 const NAMA_SURAH = {

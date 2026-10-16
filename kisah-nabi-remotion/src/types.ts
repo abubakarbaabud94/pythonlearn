@@ -7,7 +7,11 @@ export type Latar =
   | 'doa'
   | 'cahaya'
   | 'pantai-fajar'
-  | 'penutup';
+  | 'penutup'
+  | 'kota-azab'
+  | 'kota-taubat'
+  | 'kota-fajar'
+  | 'langit-malam';
 
 export type Kamera = { x: number; y: number; zoom: number };
 
@@ -46,6 +50,8 @@ export type Episode = {
   id: string;
   nomor: number;
   seri: string;
+  /** Mis. "PART 2", ditampilkan di badge seri. */
+  bagian?: string;
   judul: string;
   hook: { baris1: string; baris2: string };
   penutup: { part: string; teaser: string; rujukan: string };

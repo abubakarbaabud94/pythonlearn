@@ -1,7 +1,11 @@
 # Kisah Nabi — template motion graphic (Remotion)
 
 Template video 9:16 (1080×1920, 30 fps) untuk seri kisah nabi di TikTok/Reels.
-Episode contoh: **Nabi Yunus** (78 detik).
+
+| Komposisi | Episode | Durasi | Render |
+|---|---|---|---|
+| `Yunus` | Nabi Yunus · Part 1 — doa dari perut ikan | 82 dtk | `npm run render` |
+| `Yunus2` | Nabi Yunus · Part 2 — kaum yang azabnya diangkat | 91 dtk | `npm run render-2` |
 
 ## Prinsip konten (tidak boleh dilanggar)
 
@@ -52,7 +56,8 @@ Episode Yunus memakai voiceover ElevenLabs (suara **Arthur – Wise Indonesian N
 Naskah ditulis dengan penanda `[long pause]` di antara scene; penanda itu dipakai untuk memecah kata per scene.
 
 ```bash
-npm run sinkron-vo   # voiceover/yunus-raw.mp3 + yunus-words.json -> public/audio/vo-yunus.mp3 + src/data/vo-yunus.json
+npm run sinkron-vo     # Part 1: voiceover/yunus-raw.mp3 -> public/audio/vo-yunus.mp3 + src/data/vo-yunus.json
+npm run sinkron-vo-2   # Part 2: voiceover/yunus-2-raw.mp3 -> public/audio/vo-yunus-2.mp3 + src/data/vo-yunus-2.json
 ```
 
 Skrip `scripts/sinkron-vo.mjs`:
@@ -63,6 +68,9 @@ Skrip `scripts/sinkron-vo.mjs`:
 
 Field `cue` pada scene menyinkronkan animasi dengan kata yang diucapkan
 (mis. `'^gelapnya'` untuk tiga kegelapan, `'.'` untuk kartu ayat yang terjemahannya menyala per kata).
+Kartu ayat yang terjemahannya memuat kutipan `"..."` hanya menyalakan kutipan itu (Part 1, QS 21:87);
+tanpa kutipan, seluruh terjemahan menyala mengikuti narasi (Part 2, QS 10:98). Untuk itu narator
+harus membaca terjemahan kata per kata sama persis (tanda kurung boleh diabaikan).
 
 Rekaman sendiri juga bisa: transkripsi dengan Whisper/Scribe, ubah ke format `{ words: [{ text, type: 'word', start, end }] }`,
 dan sisipkan token `[long pause]` di batas scene.

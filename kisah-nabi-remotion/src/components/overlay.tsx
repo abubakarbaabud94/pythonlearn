@@ -97,9 +97,13 @@ export const SeriesBadge: React.FC<{ episode: Episode }> = ({ episode }) => {
       }}
     >
       {episode.seri} · #{episode.nomor}
+      {episode.bagian ? ` · ${episode.bagian}` : ''}
     </div>
   );
 };
+
+/** Ukuran font Cinzel agar satu baris muat di lebar ±940px (rata-rata lebar huruf kapital ±0,8em). */
+const ukuranMuat = (teks: string, maks: number) => Math.min(maks, Math.floor(940 / (teks.length * 0.8)));
 
 /** Judul pembuka yang menghantam masuk di detik pertama. */
 export const HookTitle: React.FC<{ episode: Episode }> = ({ episode }) => {
@@ -121,11 +125,19 @@ export const HookTitle: React.FC<{ episode: Episode }> = ({ episode }) => {
   };
   return (
     <AbsoluteFill style={{ justifyContent: 'center', alignItems: 'center', paddingBottom: 380 }}>
-      <div style={{ ...teks, fontSize: 112, opacity: b1, transform: `scale(${2 - b1})`, letterSpacing: interpolate(b1, [0, 1], [30, 4]) }}>
+      <div
+        style={{
+          ...teks,
+          fontSize: ukuranMuat(episode.hook.baris1, 112),
+          opacity: b1,
+          transform: `scale(${2 - b1})`,
+          letterSpacing: interpolate(b1, [0, 1], [30, 4]),
+        }}
+      >
         {episode.hook.baris1}
       </div>
       <div style={{ width: 620 * garis, height: 3, background: COLORS.gold, margin: '26px 0', opacity: 0.8 }} />
-      <div style={{ ...teks, fontSize: 76, opacity: b2, transform: `translateY(${(1 - b2) * 40}px)`, letterSpacing: 6 }}>
+      <div style={{ ...teks, fontSize: ukuranMuat(episode.hook.baris2, 76), opacity: b2, transform: `translateY(${(1 - b2) * 40}px)`, letterSpacing: 6 }}>
         {episode.hook.baris2}
       </div>
     </AbsoluteFill>
@@ -134,8 +146,9 @@ export const HookTitle: React.FC<{ episode: Episode }> = ({ episode }) => {
 
 /**
  * Kartu ayat: teks Arab muncul kata demi kata, bagian yang disorot (doa) berwarna emas, lalu terjemahan Kemenag.
- * Dengan voiceover (scene.cue = '.'), bagian sorot muncul saat diucapkan dan kutipan terjemahan menyala
- * kata demi kata mengikuti narasi.
+ * Dengan voiceover (scene.cue = '.'):
+ *  - jika terjemahan memuat kutipan "...", kutipan itu menyala kata demi kata dan bagian sorot Arab muncul saat diucapkan;
+ *  - jika tidak, seluruh terjemahan menyala mengikuti narasi dan teks Arab muncul sepanjang pembacaan.
  */
 export const AyatCard: React.FC<{ kunci: string; sorotKataTerakhir?: number }> = ({ kunci, sorotKataTerakhir = 0 }) => {
   const frame = useCurrentFrame();
@@ -145,29 +158,27 @@ export const AyatCard: React.FC<{ kunci: string; sorotKataTerakhir?: number }> =
   const nPembuka = kata.length - sorotKataTerakhir;
   const bagian = a.terjemahan.split(/(".*?")/);
   const kutipan = bagian.find((b) => b.startsWith('"'));
-  const kataKutipan = kutipan ? kutipan.slice(1, -1).split(' ') : [];
+  const adaKutipan = Boolean(kutipan);
+  const kataKaraoke = (kutipan ? kutipan.slice(1, -1) : a.terjemahan).split(' ');
 
-  // Titik sinkron dari voiceover: kata pertama kutipan yang diucapkan.
+  // Titik sinkron dari voiceover: kata pertama bagian karaoke yang diucapkan.
+  const norm = (t: string) => t.toLowerCase().replace(/[^\p{L}\p{N}-]/gu, '');
   const ucapan = useCueWords();
-  const pertama = kataKutipan.length
-    ? ucapan.findIndex((c) => c.text.toLowerCase().startsWith(kataKutipan[0].toLowerCase()))
-    : -1;
+  const pertama = ucapan.findIndex((c) => norm(c.text) === norm(kataKaraoke[0]));
   const sinkron = pertama >= 0;
-  const cueKutipan = sinkron ? ucapan.slice(pertama, pertama + kataKutipan.length).map((c) => c.frame) : [];
+  const cueKaraoke = sinkron ? ucapan.slice(pertama, pertama + kataKaraoke.length).map((c) => c.frame) : [];
+  const t0 = cueKaraoke[0] ?? 0;
+  const t1 = (cueKaraoke.at(-1) ?? 0) + 10;
 
   // Jadwal kemunculan tiap kata Arab.
-  const akhirArab = sinkron ? cueKutipan[0] - 6 : durationInFrames * 0.42;
+  const akhirArab = sinkron ? t0 - 6 : durationInFrames * 0.42;
   const mulaiKata = (i: number) => {
-    if (!sinkron || i < nPembuka) {
-      const n = sinkron ? nPembuka : kata.length;
-      return 10 + i * ((akhirArab - 10) / n);
-    }
-    const j = i - nPembuka;
-    const t0 = cueKutipan[0];
-    const t1 = cueKutipan.at(-1)! + 10;
-    return t0 + (j * (t1 - t0)) / sorotKataTerakhir;
+    if (!sinkron) return 10 + i * ((akhirArab - 10) / kata.length);
+    if (!adaKutipan) return t0 + (i * (t1 - t0)) / kata.length;
+    if (i < nPembuka) return 10 + i * ((akhirArab - 10) / nPembuka);
+    return t0 + ((i - nPembuka) * (t1 - t0)) / sorotKataTerakhir;
   };
-  const munculTerjemahan = sinkron ? 24 : akhirArab;
+  const munculTerjemahan = sinkron ? Math.min(24, t0) : akhirArab;
   const terjemahanOp = interpolate(frame, [munculTerjemahan, munculTerjemahan + 18], [0, 1], clamp);
   const kartuOp = interpolate(frame, [0, 10], [0, 1], clamp);
 
@@ -219,23 +230,29 @@ export const AyatCard: React.FC<{ kunci: string; sorotKataTerakhir?: number }> =
           maxWidth: 900,
         }}
       >
-        {bagian.map((b, i) => {
-          if (!b.startsWith('"')) return <span key={i}>{b}</span>;
-          return (
-            <span key={i} style={{ fontWeight: 800 }}>
-              {'"'}
-              {kataKutipan.map((w, j) => {
-                const nyala = !sinkron || frame >= cueKutipan[j];
-                return (
-                  <span key={j} style={{ color: nyala ? COLORS.gold : 'rgba(246,238,221,0.45)' }}>
-                    {(j ? ' ' : '') + w}
-                  </span>
-                );
-              })}
-              {'"'}
-            </span>
-          );
-        })}
+        {sinkron && !adaKutipan
+          ? kataKaraoke.map((w, j) => (
+              <span key={j} style={{ color: frame >= cueKaraoke[j] ? COLORS.ivory : 'rgba(246,238,221,0.4)' }}>
+                {(j ? ' ' : '') + w}
+              </span>
+            ))
+          : bagian.map((b, i) => {
+              if (!b.startsWith('"')) return <span key={i}>{b}</span>;
+              return (
+                <span key={i} style={{ fontWeight: 800 }}>
+                  {'"'}
+                  {kataKaraoke.map((w, j) => {
+                    const nyala = !sinkron || frame >= cueKaraoke[j];
+                    return (
+                      <span key={j} style={{ color: nyala ? COLORS.gold : 'rgba(246,238,221,0.45)' }}>
+                        {(j ? ' ' : '') + w}
+                      </span>
+                    );
+                  })}
+                  {'"'}
+                </span>
+              );
+            })}
       </div>
       <div
         style={{
@@ -324,7 +341,14 @@ export const PenutupOverlay: React.FC<{ episode: Episode }> = ({ episode }) => {
   const s2 = spring({ frame: frame - 22, fps, config: { damping: 200 } });
   const s3 = spring({ frame: frame - 50, fps, config: { damping: 200 } });
   return (
-    <AbsoluteFill style={{ alignItems: 'center', paddingTop: 470, padding: `470px ${SAFE.side}px 0` }}>
+    <AbsoluteFill
+      style={{
+        alignItems: 'center',
+        padding: `470px ${SAFE.side}px 0`,
+        // Gradasi gelap agar teks tetap terbaca di atas latar terang (mis. langit fajar).
+        background: `linear-gradient(180deg, rgba(5,8,13,${0.7 * s2}) 0%, rgba(5,8,13,${0.55 * s2}) 50%, rgba(5,8,13,0) 75%)`,
+      }}
+    >
       <div
         style={{
           fontFamily: FONTS.judul,

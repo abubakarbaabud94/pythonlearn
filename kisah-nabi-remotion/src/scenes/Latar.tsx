@@ -4,6 +4,7 @@ import { noise2D } from '@remotion/noise';
 import { Layer } from '../lib/camera';
 import { useCues } from '../lib/cues';
 import {
+  ArakCahaya,
   Awan,
   BerkasCahaya,
   Bintang,
@@ -272,6 +273,125 @@ const Penutup: React.FC = () => {
   );
 };
 
+/** Part 2 · Kota kaum Yunus di ambang azab: awan merah turun menekan kota. */
+const KotaAzab: React.FC = () => {
+  const { frame, durasi, p } = useProgres();
+  const turun = interpolate(p, [0, 1], [-120, 160]);
+  return (
+    <>
+      <Langit warna={['#050203', '#2a0708', '#6e1a12', '#c2461f']} stops={[0, 40, 62, 72]} />
+      <Layer depth={0.1}>
+        <Awan y={200 + turun} warna="rgba(25,4,6,0.96)" jumlah={13} seed="azab1" />
+      </Layer>
+      <Kilat merah frames={[Math.round(durasi * 0.3), Math.round(durasi * 0.72)]} />
+      <Layer depth={0.2}>
+        <Awan y={520 + turun * 1.4} warna="rgba(60,10,8,0.85)" jumlah={9} seed="azab2" />
+      </Layer>
+      <Layer depth={0.35}>
+        <Kota y={1420} warna="#0b0304" seed="ninawa" />
+      </Layer>
+      <Layer depth={0.6}>
+        <Partikel jumlah={40} warna="rgba(255,120,60,0.55)" ukuran={[1, 3]} gelembung={false} kecepatan={0.9} seed="bara" />
+      </Layer>
+      <AbsoluteFill
+        style={{
+          background: `rgba(0,0,0,${0.15 + 0.08 * Math.sin(frame / 12)})`,
+        }}
+      />
+      <Vignette kekuatan={0.85} />
+    </>
+  );
+};
+
+/** Part 2 · Taubat: arak-arakan cahaya keluar dari kota, awan mulai menipis. */
+const KotaTaubat: React.FC = () => {
+  const { p } = useProgres();
+  const awan = interpolate(p, [0, 1], [0.95, 0.45]);
+  return (
+    <>
+      <Langit warna={['#05040a', '#1a0c1c', '#3a1626', '#5b2a2a']} stops={[0, 40, 62, 72]} />
+      <AbsoluteFill style={{ opacity: interpolate(p, [0.4, 1], [0, 0.6], clamp) }}>
+        <Langit warna={['#0a0a1a', '#2a2040', '#7a4a52', '#c98a5a']} stops={[0, 40, 62, 72]} />
+      </AbsoluteFill>
+      <Layer depth={0.1} style={{ opacity: awan }}>
+        <Awan y={260} warna="rgba(20,6,10,0.95)" jumlah={12} seed="azab1" />
+      </Layer>
+      <Layer depth={0.35}>
+        <Kota y={1420} warna="#0b0507" seed="ninawa" />
+      </Layer>
+      <Layer depth={0.8}>
+        <div style={{ position: 'absolute', left: -400, right: -400, top: 1420, bottom: -400, background: '#0a0608' }} />
+        <ArakCahaya />
+      </Layer>
+      <Vignette kekuatan={0.7} />
+    </>
+  );
+};
+
+/** Part 2 · Fajar: azab diangkat, langit terang, kota hidup kembali. */
+const KotaFajar: React.FC = () => {
+  const { p } = useProgres();
+  return (
+    <>
+      <Langit warna={['#22305e', '#7a6a9a', '#eaa070', '#ffd9a0']} stops={[0, 35, 60, 70]} />
+      <Layer depth={0.05}>
+        <Matahari x={540} y={interpolate(p, [0, 1], [1360, 1180])} r={120} warna="#FFC97A" />
+      </Layer>
+      <Layer depth={0.15}>
+        <BerkasCahaya jumlah={7} warna="255,220,160" kekuatan={0.16} asalX={540} />
+      </Layer>
+      <Layer depth={0.12}>
+        <Awan y={380} warna="rgba(255,200,190,0.35)" jumlah={7} seed="fajar" />
+      </Layer>
+      <Layer depth={0.3}>
+        <Burung y={760} jumlah={7} seed="fajar" />
+      </Layer>
+      <Layer depth={0.35}>
+        <Kota y={1420} warna="#2a1a2a" seed="ninawa" lampu={false} />
+      </Layer>
+      <Layer depth={0.8}>
+        <div style={{ position: 'absolute', left: -400, right: -400, top: 1420, bottom: -400, background: '#1a1018' }} />
+      </Layer>
+      <Layer depth={1.2}>
+        <PohonKurma x={60} y={2020} tinggi={880} warna="#120a10" />
+        <PohonKurma x={1050} y={2060} tinggi={720} warna="#120a10" flip />
+      </Layer>
+      <Vignette kekuatan={0.45} />
+    </>
+  );
+};
+
+/** Langit malam yang tenang di atas laut, dengan pantulan bulan. */
+const LangitMalam: React.FC = () => (
+  <>
+    <Langit warna={['#03050c', '#0a1430', '#16264a']} stops={[0, 50, 66]} />
+    <Layer depth={0.05}>
+      <Bintang jumlah={160} batasY={1150} seed="malam2" />
+    </Layer>
+    <Layer depth={0.1}>
+      <Bulan x={720} y={560} r={80} />
+    </Layer>
+    <Layer depth={0.4}>
+      <Gelombang y={1300} amp={8} panjang={520} kecepatan={0.5} warna="#0b1630" kilau="#c9d6ff" />
+      <div
+        style={{
+          position: 'absolute',
+          left: 690,
+          top: 1310,
+          width: 60,
+          height: 520,
+          background: 'linear-gradient(180deg, rgba(255,248,220,0.55), rgba(255,248,220,0))',
+          filter: 'blur(6px)',
+        }}
+      />
+    </Layer>
+    <Layer depth={0.7}>
+      <Gelombang y={1520} amp={14} panjang={700} kecepatan={0.7} fase={2} warna="#060d1e" kilau="#8fa6d8" />
+    </Layer>
+    <Vignette kekuatan={0.7} />
+  </>
+);
+
 const PETA: Record<LatarType, React.FC> = {
   'bawah-laut-gelap': BawahLautGelap,
   'kota-senja': KotaSenja,
@@ -282,6 +402,10 @@ const PETA: Record<LatarType, React.FC> = {
   cahaya: Cahaya,
   'pantai-fajar': PantaiFajar,
   penutup: Penutup,
+  'kota-azab': KotaAzab,
+  'kota-taubat': KotaTaubat,
+  'kota-fajar': KotaFajar,
+  'langit-malam': LangitMalam,
 };
 
 export const Latar: React.FC<{ jenis: LatarType }> = ({ jenis }) => {
