@@ -1,5 +1,5 @@
 import React from 'react';
-import { AbsoluteFill, Audio, interpolate, Sequence, staticFile, useCurrentFrame, useVideoConfig } from 'remotion';
+import { AbsoluteFill, Audio, interpolate, OffthreadVideo, Sequence, staticFile, useCurrentFrame, useVideoConfig } from 'remotion';
 import { loadFonts } from './fonts';
 import { Camera } from './lib/camera';
 import { captionsDariVo, perkiraanCaptions } from './lib/captions';
@@ -62,9 +62,13 @@ const SceneView: React.FC<{ scene: Scene; episode: Episode; fadeIn: boolean }> =
   const op = fadeIn ? interpolate(frame, [0, TRANSISI], [0, 1], { extrapolateRight: 'clamp' }) : 1;
   return (
     <AbsoluteFill style={{ opacity: op, overflow: 'hidden' }}>
-      <Camera dari={scene.kamera.dari} ke={scene.kamera.ke}>
-        <Latar jenis={scene.latar} />
-      </Camera>
+      {scene.klip ? (
+        <OffthreadVideo src={staticFile(scene.klip)} muted style={{ width: '100%', height: '100%' }} />
+      ) : (
+        <Camera dari={scene.kamera.dari} ke={scene.kamera.ke}>
+          <Latar jenis={scene.latar} />
+        </Camera>
+      )}
       {scene.kaligrafi && <KaligrafiLatar kunci={scene.kaligrafi} />}
       {scene.overlay === 'hook' && (
         <>

@@ -43,6 +43,11 @@ export type Scene = {
   cue?: string;
   /** Event di tengah scene yang dipicu kata di voiceover (visual dibaca latar lewat useMomen, SFX opsional). */
   momen?: Momen[];
+  /**
+   * Klip latar pra-render (path di public/), mis. lukisan bergerak gaya Van Gogh dari scripts/vangogh.mjs.
+   * Jika ada, menggantikan `latar` + kamera; overlay, subtitle, dan SFX (yang tetap membaca `latar`) tidak berubah.
+   */
+  klip?: string;
 };
 
 export type JenisSfx = 'desir' | 'desir-lembut' | 'hantam' | 'gemuruh' | 'angin' | 'udara' | 'tik' | 'telan';

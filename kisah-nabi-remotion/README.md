@@ -5,6 +5,7 @@ Template video 9:16 (1080×1920, 30 fps) untuk seri kisah nabi di TikTok/Reels.
 | Komposisi | Episode | Durasi | Render |
 |---|---|---|---|
 | `Yunus` | Nabi Yunus · Part 1 — doa dari perut ikan | 82 dtk | `npm run render` |
+| `YunusVG` | Part 1 yang sama, latar lukisan bergerak gaya Van Gogh | 82 dtk | `npm run vangogh && npm run render-vg` |
 | `Yunus2` | Nabi Yunus · Part 2 — kaum yang azabnya diangkat | 91 dtk | `npm run render-2` |
 | `Zakariya` | #22 Nabi Zakariya — doa di usia senja | 110 dtk | `npm run render-zakariya` |
 
@@ -116,6 +117,29 @@ momen: [
 
 Nama yang dikenali latar: `buah`, `pendar`, `nyala`, `kabar` (mihrab), `inti`, `ledak` (kosmos), `keluar` (kota-taubat),
 `meteor` (langit-malam), `tiga` (overlay tiga kegelapan).
+
+## Latar gaya Van Gogh (mesin huashu-art-motion)
+
+`YunusVG` memakai naskah, voiceover, overlay, subtitle, dan SFX yang sama dengan `Yunus`. Bedanya hanya pada latar:
+latar SVG diganti klip lukisan bergerak yang dirender di `vangogh/engine/`. Mesin ini adalah salinan sebagian
+[huashu-art-motion](https://github.com/alchaincyf/huashu-art-motion) (MIT, lihat `vangogh/engine/LICENSE`).
+
+```bash
+npm run vangogh        # = node scripts/vangogh.mjs yunus --render  -> public/vangogh/yunus/<scene>.mp4 (±10 mnt, 4 proses)
+npm run render-vg      # -> out/yunus-vangogh.mp4
+node scripts/vangogh.mjs yunus --stills 1,4 --only kapal   # cek cepat: PNG ke out/vangogh-stills/kapal/
+```
+
+Kebutuhan: `uv`, `ffmpeg`, dan Chromium Playwright 1.56.
+
+- Durasi tiap klip sama persis dengan durasi Sequence scene di Remotion: `dur + TRANSISI`, kecuali scene terakhir.
+- Kata pemicu di voiceover (`ACARA` di `scripts/vangogh.mjs`) ditulis ke `window.VG_T` sebagai detik lokal scene.
+  Contoh: kawanan gagak lepas pada "pergi"; tiap kata "gelapnya" memadamkan satu lapis kegelapan; matahari muncul pada "Allah";
+  pohon labu tumbuh dari "ditumbuhkan" sampai "labu".
+- `KILAT` dan `SAAT_TELAN` dibaca dari `Latar.tsx`, jadi kilat dan bunyi gemuruh/telan tetap jatuh di frame yang sama.
+- Klip dirender 15 fps (gaya "on twos" animasi lukisan) lalu diputar di komposisi 30 fps.
+- Scene ada di `vangogh/engine/scenes/vg_<scene>.js`, dan pustaka gayanya di `vangogh/engine/vg_lib.js`.
+  Episode lain cukup diberi `klip` per scene (lihat `src/episodes/yunus-vg.ts`).
 
 ## Review: contact sheet
 

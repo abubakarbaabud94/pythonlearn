@@ -14,6 +14,8 @@
     "render-2": "remotion render Yunus2 out/yunus-2.mp4",
     "sinkron-vo-zakariya": "node scripts/sinkron-vo.mjs --id zakariya --audio voiceover/zakariya-raw.mp3 --kata voiceover/zakariya-words.json --tempo 1.08 --lambat 4",
     "render-zakariya": "remotion render Zakariya out/zakariya.mp4",
+    "vangogh": "node scripts/vangogh.mjs yunus --render",
+    "render-vg": "remotion render YunusVG out/yunus-vangogh.mp4",
     "sfx": "python3 scripts/buat-sfx.py",
     "sheet": "node scripts/sheet.mjs"
   },
