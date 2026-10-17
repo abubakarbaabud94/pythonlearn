@@ -1,0 +1,5 @@
+node_modules
+out
+vangogh/engine/eras_*vg_*.js
+public/vangogh/
+__pycache__/

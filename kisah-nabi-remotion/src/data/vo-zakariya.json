@@ -1,0 +1,1153 @@
+{
+ "audio": "audio/vo-zakariya.mp3",
+ "tempo": 1.08,
+ "durasi": 108.669,
+ "adegan": [
+  {
+   "mulai": 0,
+   "selesai": 11.374
+  },
+  {
+   "mulai": 11.374,
+   "selesai": 28.741
+  },
+  {
+   "mulai": 28.741,
+   "selesai": 35.176
+  },
+  {
+   "mulai": 35.176,
+   "selesai": 40.382
+  },
+  {
+   "mulai": 40.382,
+   "selesai": 56.482
+  },
+  {
+   "mulai": 56.482,
+   "selesai": 67.631
+  },
+  {
+   "mulai": 67.631,
+   "selesai": 72.888
+  },
+  {
+   "mulai": 72.888,
+   "selesai": 90.372
+  },
+  {
+   "mulai": 90.372,
+   "selesai": 101.181
+  },
+  {
+   "mulai": 101.181,
+   "selesai": 110.469
+  }
+ ],
+ "kata": [
+  {
+   "text": "Rambutnya",
+   "start": 0.222,
+   "end": 1.259,
+   "adegan": 0
+  },
+  {
+   "text": "sudah",
+   "start": 1.407,
+   "end": 1.63,
+   "adegan": 0
+  },
+  {
+   "text": "memutih.",
+   "start": 1.704,
+   "end": 2.415,
+   "adegan": 0
+  },
+  {
+   "text": "Tulangnya",
+   "start": 2.797,
+   "end": 3.538,
+   "adegan": 0
+  },
+  {
+   "text": "sudah",
+   "start": 3.686,
+   "end": 3.982,
+   "adegan": 0
+  },
+  {
+   "text": "melemah.",
+   "start": 4.056,
+   "end": 4.624,
+   "adegan": 0
+  },
+  {
+   "text": "Istrinya",
+   "start": 5.023,
+   "end": 5.616,
+   "adegan": 0
+  },
+  {
+   "text": "mandul.",
+   "start": 5.69,
+   "end": 6.267,
+   "adegan": 0
+  },
+  {
+   "text": "Tapi",
+   "start": 6.691,
+   "end": 7.284,
+   "adegan": 0
+  },
+  {
+   "text": "ia",
+   "start": 7.506,
+   "end": 7.728,
+   "adegan": 0
+  },
+  {
+   "text": "tetap",
+   "start": 7.802,
+   "end": 8.173,
+   "adegan": 0
+  },
+  {
+   "text": "berdoa…",
+   "start": 8.247,
+   "end": 9.022,
+   "adegan": 0
+  },
+  {
+   "text": "dengan",
+   "start": 9.424,
+   "end": 9.794,
+   "adegan": 0
+  },
+  {
+   "text": "suara",
+   "start": 9.943,
+   "end": 10.387,
+   "adegan": 0
+  },
+  {
+   "text": "yang",
+   "start": 10.461,
+   "end": 10.609,
+   "adegan": 0
+  },
+  {
+   "text": "lembut.",
+   "start": 10.683,
+   "end": 10.976,
+   "adegan": 0
+  },
+  {
+   "text": "Zakariya",
+   "start": 11.772,
+   "end": 12.513,
+   "adegan": 1
+  },
+  {
+   "text": "adalah",
+   "start": 12.661,
+   "end": 12.957,
+   "adegan": 1
+  },
+  {
+   "text": "pengasuh",
+   "start": 13.032,
+   "end": 13.55,
+   "adegan": 1
+  },
+  {
+   "text": "Maryam.",
+   "start": 13.624,
+   "end": 14.244,
+   "adegan": 1
+  },
+  {
+   "text": "Setiap",
+   "start": 14.622,
+   "end": 15.066,
+   "adegan": 1
+  },
+  {
+   "text": "kali",
+   "start": 15.14,
+   "end": 15.511,
+   "adegan": 1
+  },
+  {
+   "text": "ia",
+   "start": 15.585,
+   "end": 15.807,
+   "adegan": 1
+  },
+  {
+   "text": "masuk",
+   "start": 15.881,
+   "end": 16.251,
+   "adegan": 1
+  },
+  {
+   "text": "ke",
+   "start": 16.325,
+   "end": 16.399,
+   "adegan": 1
+  },
+  {
+   "text": "mihrab,",
+   "start": 16.473,
+   "end": 17.012,
+   "adegan": 1
+  },
+  {
+   "text": "ia",
+   "start": 17.417,
+   "end": 17.565,
+   "adegan": 1
+  },
+  {
+   "text": "mendapati",
+   "start": 17.639,
+   "end": 18.305,
+   "adegan": 1
+  },
+  {
+   "text": "makanan",
+   "start": 18.379,
+   "end": 18.898,
+   "adegan": 1
+  },
+  {
+   "text": "di",
+   "start": 18.972,
+   "end": 19.046,
+   "adegan": 1
+  },
+  {
+   "text": "sisinya.",
+   "start": 19.12,
+   "end": 19.699,
+   "adegan": 1
+  },
+  {
+   "text": "Ia",
+   "start": 20.093,
+   "end": 20.315,
+   "adegan": 1
+  },
+  {
+   "text": "bertanya,",
+   "start": 20.389,
+   "end": 20.996,
+   "adegan": 1
+  },
+  {
+   "text": "Wahai",
+   "start": 21.421,
+   "end": 21.94,
+   "adegan": 1
+  },
+  {
+   "text": "Maryam,",
+   "start": 22.014,
+   "end": 22.574,
+   "adegan": 1
+  },
+  {
+   "text": "dari",
+   "start": 22.941,
+   "end": 23.163,
+   "adegan": 1
+  },
+  {
+   "text": "mana",
+   "start": 23.312,
+   "end": 23.682,
+   "adegan": 1
+  },
+  {
+   "text": "ini",
+   "start": 23.83,
+   "end": 24.052,
+   "adegan": 1
+  },
+  {
+   "text": "engkau",
+   "start": 24.126,
+   "end": 24.349,
+   "adegan": 1
+  },
+  {
+   "text": "peroleh?",
+   "start": 24.423,
+   "end": 24.925,
+   "adegan": 1
+  },
+  {
+   "text": "Maryam",
+   "start": 25.569,
+   "end": 25.777,
+   "adegan": 1
+  },
+  {
+   "text": "menjawab,",
+   "start": 25.888,
+   "end": 26.36,
+   "adegan": 1
+  },
+  {
+   "text": "Itu",
+   "start": 26.765,
+   "end": 27.284,
+   "adegan": 1
+  },
+  {
+   "text": "dari",
+   "start": 27.432,
+   "end": 27.654,
+   "adegan": 1
+  },
+  {
+   "text": "Allah.",
+   "start": 27.802,
+   "end": 28.271,
+   "adegan": 1
+  },
+  {
+   "text": "Menurut",
+   "start": 29.211,
+   "end": 29.544,
+   "adegan": 2
+  },
+  {
+   "text": "para",
+   "start": 29.618,
+   "end": 29.767,
+   "adegan": 2
+  },
+  {
+   "text": "mufassir,",
+   "start": 29.841,
+   "end": 30.606,
+   "adegan": 2
+  },
+  {
+   "text": "makanan",
+   "start": 31.016,
+   "end": 31.461,
+   "adegan": 2
+  },
+  {
+   "text": "itu",
+   "start": 31.609,
+   "end": 31.905,
+   "adegan": 2
+  },
+  {
+   "text": "adalah",
+   "start": 31.979,
+   "end": 32.276,
+   "adegan": 2
+  },
+  {
+   "text": "buah-buahan",
+   "start": 32.424,
+   "end": 33.165,
+   "adegan": 2
+  },
+  {
+   "text": "yang",
+   "start": 33.239,
+   "end": 33.387,
+   "adegan": 2
+  },
+  {
+   "text": "tidak",
+   "start": 33.535,
+   "end": 33.831,
+   "adegan": 2
+  },
+  {
+   "text": "sedang",
+   "start": 33.905,
+   "end": 34.127,
+   "adegan": 2
+  },
+  {
+   "text": "musimnya.",
+   "start": 34.202,
+   "end": 34.789,
+   "adegan": 2
+  },
+  {
+   "text": "Melihat",
+   "start": 35.563,
+   "end": 36.007,
+   "adegan": 3
+  },
+  {
+   "text": "itu…",
+   "start": 36.155,
+   "end": 36.605,
+   "adegan": 3
+  },
+  {
+   "text": "di",
+   "start": 36.986,
+   "end": 37.06,
+   "adegan": 3
+  },
+  {
+   "text": "sanalah",
+   "start": 37.134,
+   "end": 37.652,
+   "adegan": 3
+  },
+  {
+   "text": "Zakariya",
+   "start": 37.726,
+   "end": 38.245,
+   "adegan": 3
+  },
+  {
+   "text": "berdoa",
+   "start": 38.319,
+   "end": 38.912,
+   "adegan": 3
+  },
+  {
+   "text": "kepada",
+   "start": 38.986,
+   "end": 39.356,
+   "adegan": 3
+  },
+  {
+   "text": "Tuhannya.",
+   "start": 39.43,
+   "end": 39.986,
+   "adegan": 3
+  },
+  {
+   "text": "Dengan",
+   "start": 40.778,
+   "end": 41.155,
+   "adegan": 4
+  },
+  {
+   "text": "suara",
+   "start": 41.229,
+   "end": 41.599,
+   "adegan": 4
+  },
+  {
+   "text": "yang",
+   "start": 41.673,
+   "end": 41.821,
+   "adegan": 4
+  },
+  {
+   "text": "lembut,",
+   "start": 41.896,
+   "end": 42.283,
+   "adegan": 4
+  },
+  {
+   "text": "ia",
+   "start": 42.996,
+   "end": 43.145,
+   "adegan": 4
+  },
+  {
+   "text": "berkata:",
+   "start": 43.219,
+   "end": 43.752,
+   "adegan": 4
+  },
+  {
+   "text": "Ya",
+   "start": 44.445,
+   "end": 44.667,
+   "adegan": 4
+  },
+  {
+   "text": "Tuhanku,",
+   "start": 44.816,
+   "end": 45.175,
+   "adegan": 4
+  },
+  {
+   "text": "sungguh",
+   "start": 45.847,
+   "end": 46.292,
+   "adegan": 4
+  },
+  {
+   "text": "tulangku",
+   "start": 46.366,
+   "end": 46.958,
+   "adegan": 4
+  },
+  {
+   "text": "telah",
+   "start": 47.032,
+   "end": 47.181,
+   "adegan": 4
+  },
+  {
+   "text": "melemah",
+   "start": 47.255,
+   "end": 47.758,
+   "adegan": 4
+  },
+  {
+   "text": "dan",
+   "start": 48.405,
+   "end": 48.553,
+   "adegan": 4
+  },
+  {
+   "text": "kepalaku",
+   "start": 48.627,
+   "end": 49.219,
+   "adegan": 4
+  },
+  {
+   "text": "telah",
+   "start": 49.293,
+   "end": 49.516,
+   "adegan": 4
+  },
+  {
+   "text": "dipenuhi",
+   "start": 49.59,
+   "end": 50.034,
+   "adegan": 4
+  },
+  {
+   "text": "uban,",
+   "start": 50.108,
+   "end": 50.519,
+   "adegan": 4
+  },
+  {
+   "text": "sedang",
+   "start": 51.15,
+   "end": 51.521,
+   "adegan": 4
+  },
+  {
+   "text": "aku",
+   "start": 51.669,
+   "end": 51.891,
+   "adegan": 4
+  },
+  {
+   "text": "belum",
+   "start": 51.965,
+   "end": 52.187,
+   "adegan": 4
+  },
+  {
+   "text": "pernah",
+   "start": 52.336,
+   "end": 52.632,
+   "adegan": 4
+  },
+  {
+   "text": "kecewa",
+   "start": 52.706,
+   "end": 53.225,
+   "adegan": 4
+  },
+  {
+   "text": "dalam",
+   "start": 53.262,
+   "end": 53.521,
+   "adegan": 4
+  },
+  {
+   "text": "berdoa",
+   "start": 53.632,
+   "end": 54.039,
+   "adegan": 4
+  },
+  {
+   "text": "kepada-Mu,",
+   "start": 54.113,
+   "end": 54.81,
+   "adegan": 4
+  },
+  {
+   "text": "ya",
+   "start": 55.482,
+   "end": 55.63,
+   "adegan": 4
+  },
+  {
+   "text": "Tuhanku.",
+   "start": 55.705,
+   "end": 56.032,
+   "adegan": 4
+  },
+  {
+   "text": "Lalu",
+   "start": 56.932,
+   "end": 57.243,
+   "adegan": 5
+  },
+  {
+   "text": "para",
+   "start": 57.391,
+   "end": 57.613,
+   "adegan": 5
+  },
+  {
+   "text": "malaikat",
+   "start": 57.687,
+   "end": 58.206,
+   "adegan": 5
+  },
+  {
+   "text": "memanggilnya,",
+   "start": 58.28,
+   "end": 59.051,
+   "adegan": 5
+  },
+  {
+   "text": "ketika",
+   "start": 59.408,
+   "end": 59.852,
+   "adegan": 5
+  },
+  {
+   "text": "ia",
+   "start": 60.001,
+   "end": 60.149,
+   "adegan": 5
+  },
+  {
+   "text": "berdiri",
+   "start": 60.223,
+   "end": 60.667,
+   "adegan": 5
+  },
+  {
+   "text": "melaksanakan",
+   "start": 60.741,
+   "end": 61.408,
+   "adegan": 5
+  },
+  {
+   "text": "salat",
+   "start": 61.482,
+   "end": 61.852,
+   "adegan": 5
+  },
+  {
+   "text": "di",
+   "start": 61.926,
+   "end": 62.001,
+   "adegan": 5
+  },
+  {
+   "text": "mihrab:",
+   "start": 62.075,
+   "end": 62.461,
+   "adegan": 5
+  },
+  {
+   "text": "Allah",
+   "start": 62.868,
+   "end": 63.312,
+   "adegan": 5
+  },
+  {
+   "text": "menyampaikan",
+   "start": 63.386,
+   "end": 64.053,
+   "adegan": 5
+  },
+  {
+   "text": "kabar",
+   "start": 64.127,
+   "end": 64.349,
+   "adegan": 5
+  },
+  {
+   "text": "gembira",
+   "start": 64.423,
+   "end": 64.868,
+   "adegan": 5
+  },
+  {
+   "text": "kepadamu,",
+   "start": 64.942,
+   "end": 65.42,
+   "adegan": 5
+  },
+  {
+   "text": "dengan",
+   "start": 65.776,
+   "end": 66.146,
+   "adegan": 5
+  },
+  {
+   "text": "kelahiran",
+   "start": 66.22,
+   "end": 66.739,
+   "adegan": 5
+  },
+  {
+   "text": "Yahya.",
+   "start": 66.813,
+   "end": 67.247,
+   "adegan": 5
+  },
+  {
+   "text": "Sebuah",
+   "start": 68.016,
+   "end": 68.46,
+   "adegan": 6
+  },
+  {
+   "text": "nama…",
+   "start": 68.608,
+   "end": 69.058,
+   "adegan": 6
+  },
+  {
+   "text": "yang",
+   "start": 69.447,
+   "end": 69.669,
+   "adegan": 6
+  },
+  {
+   "text": "belum",
+   "start": 69.743,
+   "end": 69.892,
+   "adegan": 6
+  },
+  {
+   "text": "pernah",
+   "start": 70.04,
+   "end": 70.336,
+   "adegan": 6
+  },
+  {
+   "text": "diberikan",
+   "start": 70.41,
+   "end": 70.929,
+   "adegan": 6
+  },
+  {
+   "text": "kepada",
+   "start": 71.003,
+   "end": 71.299,
+   "adegan": 6
+  },
+  {
+   "text": "siapa",
+   "start": 71.373,
+   "end": 71.743,
+   "adegan": 6
+  },
+  {
+   "text": "pun",
+   "start": 71.892,
+   "end": 72.04,
+   "adegan": 6
+  },
+  {
+   "text": "sebelumnya.",
+   "start": 72.114,
+   "end": 72.479,
+   "adegan": 6
+  },
+  {
+   "text": "Zakariya",
+   "start": 73.298,
+   "end": 73.757,
+   "adegan": 7
+  },
+  {
+   "text": "bertanya,",
+   "start": 73.906,
+   "end": 74.447,
+   "adegan": 7
+  },
+  {
+   "text": "bagaimana",
+   "start": 74.829,
+   "end": 75.495,
+   "adegan": 7
+  },
+  {
+   "text": "aku",
+   "start": 75.569,
+   "end": 75.792,
+   "adegan": 7
+  },
+  {
+   "text": "akan",
+   "start": 75.866,
+   "end": 76.088,
+   "adegan": 7
+  },
+  {
+   "text": "mempunyai",
+   "start": 76.162,
+   "end": 76.606,
+   "adegan": 7
+  },
+  {
+   "text": "anak,",
+   "start": 76.681,
+   "end": 77.074,
+   "adegan": 7
+  },
+  {
+   "text": "padahal",
+   "start": 77.468,
+   "end": 77.839,
+   "adegan": 7
+  },
+  {
+   "text": "istriku",
+   "start": 77.913,
+   "end": 78.357,
+   "adegan": 7
+  },
+  {
+   "text": "mandul",
+   "start": 78.506,
+   "end": 78.868,
+   "adegan": 7
+  },
+  {
+   "text": "dan",
+   "start": 79.24,
+   "end": 79.388,
+   "adegan": 7
+  },
+  {
+   "text": "aku",
+   "start": 79.536,
+   "end": 79.832,
+   "adegan": 7
+  },
+  {
+   "text": "sudah",
+   "start": 79.906,
+   "end": 80.129,
+   "adegan": 7
+  },
+  {
+   "text": "sangat",
+   "start": 80.203,
+   "end": 80.425,
+   "adegan": 7
+  },
+  {
+   "text": "tua?",
+   "start": 80.499,
+   "end": 80.829,
+   "adegan": 7
+  },
+  {
+   "text": "Allah",
+   "start": 81.442,
+   "end": 81.689,
+   "adegan": 7
+  },
+  {
+   "text": "berfirman:",
+   "start": 81.8,
+   "end": 82.389,
+   "adegan": 7
+  },
+  {
+   "text": "Hal",
+   "start": 82.794,
+   "end": 83.017,
+   "adegan": 7
+  },
+  {
+   "text": "itu",
+   "start": 83.165,
+   "end": 83.387,
+   "adegan": 7
+  },
+  {
+   "text": "mudah",
+   "start": 83.535,
+   "end": 83.906,
+   "adegan": 7
+  },
+  {
+   "text": "bagi-Ku.",
+   "start": 83.98,
+   "end": 84.323,
+   "adegan": 7
+  },
+  {
+   "text": "Engkau",
+   "start": 84.728,
+   "end": 85.172,
+   "adegan": 7
+  },
+  {
+   "text": "telah",
+   "start": 85.246,
+   "end": 85.468,
+   "adegan": 7
+  },
+  {
+   "text": "Aku",
+   "start": 85.543,
+   "end": 85.691,
+   "adegan": 7
+  },
+  {
+   "text": "ciptakan",
+   "start": 85.765,
+   "end": 86.357,
+   "adegan": 7
+  },
+  {
+   "text": "sebelum",
+   "start": 86.431,
+   "end": 86.728,
+   "adegan": 7
+  },
+  {
+   "text": "itu,",
+   "start": 86.876,
+   "end": 87.197,
+   "adegan": 7
+  },
+  {
+   "text": "padahal",
+   "start": 87.6,
+   "end": 88.044,
+   "adegan": 7
+  },
+  {
+   "text": "engkau",
+   "start": 88.156,
+   "end": 88.489,
+   "adegan": 7
+  },
+  {
+   "text": "belum",
+   "start": 88.563,
+   "end": 88.711,
+   "adegan": 7
+  },
+  {
+   "text": "berwujud",
+   "start": 88.785,
+   "end": 89.304,
+   "adegan": 7
+  },
+  {
+   "text": "sama",
+   "start": 89.378,
+   "end": 89.6,
+   "adegan": 7
+  },
+  {
+   "text": "sekali.",
+   "start": 89.674,
+   "end": 89.987,
+   "adegan": 7
+  },
+  {
+   "text": "Maka",
+   "start": 90.756,
+   "end": 91.201,
+   "adegan": 8
+  },
+  {
+   "text": "Allah",
+   "start": 91.349,
+   "end": 91.719,
+   "adegan": 8
+  },
+  {
+   "text": "mengabulkan",
+   "start": 91.793,
+   "end": 92.46,
+   "adegan": 8
+  },
+  {
+   "text": "doanya.",
+   "start": 92.534,
+   "end": 92.862,
+   "adegan": 8
+  },
+  {
+   "text": "Sungguh,",
+   "start": 93.271,
+   "end": 93.792,
+   "adegan": 8
+  },
+  {
+   "text": "mereka",
+   "start": 94.182,
+   "end": 94.627,
+   "adegan": 8
+  },
+  {
+   "text": "selalu",
+   "start": 94.701,
+   "end": 94.997,
+   "adegan": 8
+  },
+  {
+   "text": "bersegera",
+   "start": 95.071,
+   "end": 95.59,
+   "adegan": 8
+  },
+  {
+   "text": "dalam",
+   "start": 95.664,
+   "end": 95.886,
+   "adegan": 8
+  },
+  {
+   "text": "kebaikan,",
+   "start": 95.96,
+   "end": 96.581,
+   "adegan": 8
+  },
+  {
+   "text": "dan",
+   "start": 96.96,
+   "end": 97.108,
+   "adegan": 8
+  },
+  {
+   "text": "berdoa",
+   "start": 97.182,
+   "end": 97.701,
+   "adegan": 8
+  },
+  {
+   "text": "kepada",
+   "start": 97.775,
+   "end": 98.071,
+   "adegan": 8
+  },
+  {
+   "text": "Allah",
+   "start": 98.219,
+   "end": 98.708,
+   "adegan": 8
+  },
+  {
+   "text": "dengan",
+   "start": 99.096,
+   "end": 99.318,
+   "adegan": 8
+  },
+  {
+   "text": "penuh",
+   "start": 99.467,
+   "end": 99.652,
+   "adegan": 8
+  },
+  {
+   "text": "harap",
+   "start": 99.689,
+   "end": 100.133,
+   "adegan": 8
+  },
+  {
+   "text": "dan",
+   "start": 100.207,
+   "end": 100.281,
+   "adegan": 8
+  },
+  {
+   "text": "cemas.",
+   "start": 100.43,
+   "end": 100.794,
+   "adegan": 8
+  },
+  {
+   "text": "Ia",
+   "start": 101.568,
+   "end": 101.938,
+   "adegan": 9
+  },
+  {
+   "text": "tidak",
+   "start": 102.012,
+   "end": 102.308,
+   "adegan": 9
+  },
+  {
+   "text": "pernah",
+   "start": 102.382,
+   "end": 102.679,
+   "adegan": 9
+  },
+  {
+   "text": "kecewa",
+   "start": 102.753,
+   "end": 103.271,
+   "adegan": 9
+  },
+  {
+   "text": "dalam",
+   "start": 103.345,
+   "end": 103.568,
+   "adegan": 9
+  },
+  {
+   "text": "berdoa",
+   "start": 103.642,
+   "end": 104.234,
+   "adegan": 9
+  },
+  {
+   "text": "kepada",
+   "start": 104.308,
+   "end": 104.679,
+   "adegan": 9
+  },
+  {
+   "text": "Tuhannya.",
+   "start": 104.753,
+   "end": 105.298,
+   "adegan": 9
+  },
+  {
+   "text": "Episode",
+   "start": 105.736,
+   "end": 106.255,
+   "adegan": 9
+  },
+  {
+   "text": "berikutnya:",
+   "start": 106.329,
+   "end": 107.067,
+   "adegan": 9
+  },
+  {
+   "text": "Nabi",
+   "start": 107.495,
+   "end": 107.866,
+   "adegan": 9
+  },
+  {
+   "text": "Yahya.",
+   "start": 107.94,
+   "end": 108.681,
+   "adegan": 9
+  }
+ ]
+}
