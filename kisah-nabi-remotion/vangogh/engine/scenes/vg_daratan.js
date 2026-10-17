@@ -15,9 +15,9 @@ SCENES['vg_daratan'] = (() => {
     daun: P.swatch(['#2a6a2a', '#4a8a2a', '#1a4a1a', '#6aa83a', '#3a7a3a'], 0.3),
   };
   const palette = (x, y, col, r) => (Math.hypot(x - SUN[0], y - SUN[1]) < 200 ? S.hot(col, r) : y < HZ ? S.sky(col, r) : y < pantai(x) ? S.sea(col, r) : S.sand(col, r));
-  const PX = 860, PY = 1430;                                          // akar pohon labu
+  const PX = 860, PY = 1290;                                          // akar pohon labu
   // sulur: titik-titik batang dari akar ke pucuk (melengkung ke kiri atas), daun lebar bergantian kiri-kanan
-  const stem = (u) => [PX - 160 * u * u + Math.sin(u * 7) * 26, PY - 560 * u];
+  const stem = (u) => [PX - 160 * u * u + Math.sin(u * 7) * 26, PY - 520 * u];
   const LEAVES = Array.from({ length: 11 }, (_, k) => { const u = 0.12 + k * 0.08; return { u, side: k % 2 ? 1 : -1, size: 105 - k * 4 }; });
   function leaf(g, x, y, r, rot, col) {
     g.save(); g.translate(x, y); g.rotate(rot); g.fillStyle = col; g.beginPath();

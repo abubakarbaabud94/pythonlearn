@@ -69,6 +69,15 @@ const SceneView: React.FC<{ scene: Scene; episode: Episode; fadeIn: boolean }> =
           <Latar jenis={scene.latar} />
         </Camera>
       )}
+      {scene.klip && scene.overlay !== 'ayat' && (
+        // Klip lukisan ramai & terang (gandum, cahaya, pasir): pita gelap lembut di zona subtitle (±y 1290–1560).
+        <AbsoluteFill
+          style={{
+            background:
+              'linear-gradient(180deg, rgba(5,8,13,0) 62%, rgba(5,8,13,.55) 69%, rgba(5,8,13,.55) 79%, rgba(5,8,13,0) 86%)',
+          }}
+        />
+      )}
       {scene.kaligrafi && <KaligrafiLatar kunci={scene.kaligrafi} />}
       {scene.overlay === 'hook' && (
         <>

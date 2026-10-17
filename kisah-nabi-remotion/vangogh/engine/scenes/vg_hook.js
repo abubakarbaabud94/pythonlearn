@@ -1,9 +1,9 @@
 // Hook · laut malam di bawah langit berpusar; kapal kecil di cakrawala, ikan besar naik pelan di bawah ombak.
 // Frame 0 = thumbnail: komposisi sudah utuh sejak awal. Kata "gelap" meredupkan langit sedikit, "satu" membuat halo bulan memuncak.
 SCENES['vg_hook'] = (() => {
-  const { W, H, P } = VG, HZ = 1090, MOON = [860, 230], ID = 'hook';
+  const { W, H, P } = VG, HZ = 1090, MOON = [860, 400], ID = 'hook';
   const SW = [[380, 560, 200, 1], [720, 450, 150, -1], [200, 260, 95, -1], [880, 800, 110, 1], [560, 880, 80, -1]];
-  const STARS = [[150, 520, 15], [520, 170, 13], [960, 560, 17], [640, 700, 11], [300, 900, 12], [930, 330, 9], [110, 760, 9]];
+  const STARS = [[150, 520, 15], [520, 170, 13], [960, 640, 14], [640, 700, 11], [300, 900, 12], [930, 150, 9], [110, 760, 9]];
   const wave = VG.waveFn(HZ);
   const fx = t => 600 - t * 16, fy = t => 1580 - t * 14;
   const sky = VG.skyAngle(SW, [[MOON[0], MOON[1], 200]]), seaA = VG.seaAngle(wave);

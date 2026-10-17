@@ -1,7 +1,7 @@
 // Doa · kegelapan biru-ungu yang berpusar mengelilingi satu cahaya; cahaya menguat saat "berseru" dan memuncak di "Tidak (ada tuhan)".
 // Sengaja redup dan tenang: kartu ayat dari Remotion tampil di atasnya.
 SCENES['vg_doa'] = (() => {
-  const { W, H, P } = VG, ID = 'doa', C = [540, 760];
+  const { W, H, P } = VG, ID = 'doa', C = [540, 300];   // di atas kartu ayat (±y 510–1440) agar teks Arab tetap terbaca
   const angle = (x, y, t) => { const d = Math.hypot(x - C[0], y - C[1]); return Math.atan2(y - C[1], x - C[0]) + Math.PI / 2 + 0.35 * Math.sin(d * 0.004 - t * 0.4); };
   const S = { dark: P.swatch(['#0a0c2a', '#14183e', '#1e2456', '#0c1a3a', '#262a60'], 0.45), gold: P.swatch(['#f6d84a', '#f0b83a', '#fff0a0', '#d8902a'], 0.35) };
   return {
@@ -18,7 +18,7 @@ SCENES['vg_doa'] = (() => {
         palette: (x, y, col, r) => (col[0] > 120 && col[0] > col[2] ? S.gold(col, r) : S.dark(col, r)) });
       VG.halo(c, C[0], C[1], lt, { r0: 60, r1: 320 + 120 * L, a: 0.16 + 0.2 * L, speed: 0.35, rgb: '255,200,90' });
       c.save(); c.globalCompositeOperation = 'lighter';
-      VG.glow(c, C[0], C[1], 140 + 90 * L, [[0, `rgba(255,244,200,${0.75 * L})`], [0.4, `rgba(255,200,90,${0.3 * L})`], [1, 'rgba(255,200,90,0)']]);
+      VG.glow(c, C[0], C[1], 120 + 60 * L, [[0, `rgba(255,244,200,${0.75 * L})`], [0.4, `rgba(255,200,90,${0.3 * L})`], [1, 'rgba(255,200,90,0)']]);
       c.restore();
       VG.vignette(c, 0.6);
     },
